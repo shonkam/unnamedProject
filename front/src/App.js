@@ -1,23 +1,22 @@
 import React from 'react';
-import helloworld from './services/helloworld';
-import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Home from './components/home';
+import Login from './components/login';
+import LinkHeader from './components/linkHeader';
+import SignUp from './components/signUp';
 
 function App() {
 
-  const [message, setMessage] = useState('')
-
-  useEffect(() => {
-    helloworld
-      .helloWorld()
-      .then(response => {
-        setMessage(response.data)
-      })
-  }, [])
-
   return (
-    <div>
-      {message}
-    </div>
+    <BrowserRouter>
+      <LinkHeader />
+      <Routes>
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route exact path='/' element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

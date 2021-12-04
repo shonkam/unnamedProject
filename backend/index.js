@@ -1,15 +1,25 @@
-const express = require('express')
-const cors = require('cors')
-const app = express()
+import { ApolloServer } from 'apollo-server-express'
+import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core'
+import express from 'express'
+import http from 'http'
+import cors from 'cors'
 
-app.use(cors())
+import { schema } from "./src/schema.js"
 
-app.get('/helloworld', (request, response) => {
-    response.send('hello world')
-})
+async function startApolloServer(schema) {
+  const app = express()
+  const httpServer = http.createServer(app)
+  //todo confirm cors
+  app.use(cors())
+  const server = new ApolloServer({
+    schema,
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  })
 
-const PORT = 3030
+  await server.start()
+  server.applyMiddleware({ app })
+  await new Promise(resolve => httpServer.listen({ port: 3030 }, resolve))
+  console.log(`🚀 Server ready at http://localhost:3030${server.graphqlPath}`)
+}
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-})
+startApolloServer(schema)

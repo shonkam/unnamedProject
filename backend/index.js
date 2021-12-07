@@ -5,7 +5,7 @@ import express from 'express'
 import http from 'http'
 import cors from 'cors'
 import mongoose from 'mongoose'
-import { schema } from "./src/schema.js"
+import { schema } from './src/schema.js'
 
 dotenv.config()
 

@@ -14,7 +14,7 @@ function connectMongoDB() {
     mongoose.connect(process.env.MONGO_URI)
     console.log('connected successfully to MongoDB')
   } catch (error) {
-    console.log('error while connecting to MongoDB:', error.message)
+    console.log('error while connecting to MongoDB: ', error.message)
   }
 }
 

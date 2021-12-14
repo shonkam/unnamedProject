@@ -7,16 +7,11 @@ import {
   resolvers as userResolvers,
 } from './user.js'
 
-//extra queries
-const Query = `
-  type Query {
-    _empty: String
-  }
-`
+
 //extra resolvers
 const additionalResolvers = {}
 
 export const schema = makeExecutableSchema({
-  typeDefs: [Query, UserTypeDefs],
+  typeDefs: [UserTypeDefs],
   resolvers: merge(additionalResolvers, userResolvers),
 })

@@ -16,11 +16,15 @@ export const typeDefs = gql`
   }
 
   type Token {
-    value: String!
+    tokenValue: String!
   }
   
   type Query {
     allUsers(username: String): [User]
+  }
+
+  type Message {
+    message: String!
   }
 
   type Mutation {
@@ -29,6 +33,10 @@ export const typeDefs = gql`
       username: String!
       password: String!
     ): User
+
+    deleteUser(
+      username: String!
+    ): Message
 
     login(
       username: String!
@@ -76,6 +84,18 @@ export const resolvers = {
       }
     },
 
+    deleteUser: async (root, args) => {
+      try {
+        const user = await User.findOne({ username: args.username })
+        await User.findByIdAndDelete(user.id)
+
+        return { message: `Account ${args.username} was successfully deleted` }
+      } catch (error) {
+        //todo better error handling
+        console.log('followed error occured: ', error)
+      }
+    },
+
     login: async (root, args) => {
       try {
         const user = await User.findOne({ username: args.username })
@@ -98,7 +118,7 @@ export const resolvers = {
 
         const token = await jwt.sign(userDataForToken, JWT_SECRET)
 
-        return { value: token }
+        return { tokenValue: token }
       } catch (error) {
         //todo better error handling
         console.log('followed error occured while creating a new user', error)

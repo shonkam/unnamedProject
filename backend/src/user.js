@@ -50,7 +50,9 @@ export const resolvers = {
     allUsers: async (root, args) => {
       try {
         if (args.username) {
-          return await User.findOne({ username: args.username })
+          const response = await User.findOne({ username: args.username })
+          //todo better work-around
+          return [response]
         }
         else {
           return await User.find({})

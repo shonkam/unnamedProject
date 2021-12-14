@@ -14,3 +14,6 @@
 Implemented deleteUser mutation
 Implemented 4 test cases
 Spent way too much time trying to configurate testing so that you wouldn't need to force exit, will take a second round later | 14.12.2021 | 8 | 18 |
+| Implemented mutations for adding and deleting a store
+Implemented query to fetch data from all stores
+Implemented 3 test cases | 14.12.2021 | 2 | 20 |

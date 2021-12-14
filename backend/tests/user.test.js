@@ -5,6 +5,7 @@ import { ALL_USERS, ADD_USER, LOGIN, DELETE_USER } from './testQueries.js'
 
 
 describe('tests for users ', () => {
+
   const testServer = new ApolloServer({
     schema
   })
@@ -60,5 +61,5 @@ afterAll(async () => {
   //todo make jest close without force exit
   //const close = true
   //await connectToMongoDB(close)
-  console.log('end')
+  console.log('user end')
 })

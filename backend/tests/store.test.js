@@ -1,15 +1,12 @@
-import { ApolloServer } from 'apollo-server-express'
-import { schema } from '../src/schema'
-import index from '../index'
 import { ADD_STORE, DELETE_STORE, ALL_STORES } from './testQueries.js'
+import { testHelper } from './testHelper.js'
+import { server as testServer } from '../src/server.js'
 
+testHelper()
 
 describe('tests for users ', () => {
-  const testServer = new ApolloServer({
-    schema
-  })
-
   it('creates a new store', async () => {
+
     const response = await testServer.executeOperation({
       query: ADD_STORE,
       variables: {
@@ -45,12 +42,4 @@ describe('tests for users ', () => {
 
     expect(response.data.deleteStore.message).toBe('Store testStore was successfully deleted')
   })
-})
-
-
-afterAll(async () => {
-  //todo make jest close without force exit
-  //const close = true
-  //await connectToMongoDB(close)
-  console.log('store end')
 })

@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import { gql } from 'apollo-server-express'
 import { UserInputError } from 'apollo-server-express'
-import User from './models/userModel.js'
+import User from '../mongooseModels/userModel.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 

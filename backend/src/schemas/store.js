@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-express'
 import { UserInputError } from 'apollo-server-express'
-import Store from './models/storeModel.js'
+import Store from '../mongooseModels/storeModel.js'
 
 export const typeDefs = gql`
 

@@ -2,7 +2,7 @@
 
 ## project for personal portfolio && Full Stack open 2021 project work -course
 
-| Task | Date | Hours | Hours total |
+| Task | Commit Date | Hours | Hours total |
 |-----|-----|-----|-----|
 | Init project | 02.12.2021 | 1 | 1 |
 | Added router to the project, started Login view implementation | 02.12.2021 | 1 | 2 |
@@ -12,11 +12,12 @@
 | Login mutation with JWT token | 08.12.2021 | 2 | 10 |
 | Created a test environment with a MongoDB connection for the backend with Jest
 Implemented deleteUser mutation
-Implemented 4 test cases
+Implemented 4 test cases for testing users
 Spent way too much time trying to configurate testing so that you wouldn't need to force exit, will take a second round later | 14.12.2021 | 8 | 18 |
 | Implemented mutations for adding and deleting a store
-Implemented query to fetch data from all stores
-Implemented 3 test cases | 14.12.2021 | 2 | 20 |
+Implemented a query to fetch data from stores
+Implemented 3 test cases for testing stores | 14.12.2021 | 2 | 20 |
 | Sorted testing
 Added test helper
-Improved project structure | 14.12.2021 | 3 | 23 |
+Improved project structure | 15.12.2021 | 3 | 23 |
+| README fixes | 16.12.2021 | 0 | 23 |

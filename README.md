@@ -21,3 +21,8 @@ Implemented 3 test cases for testing stores | 14.12.2021 | 2 | 20 |
 Added test helper
 Improved project structure | 15.12.2021 | 3 | 23 |
 | README fixes | 16.12.2021 | 0 | 23 |
+| Designing the data structure and backend logic
+Improved mongoose models
+Converted user into customer
+Implemented login mutation for stores
+Added tests for testing the behaviour during bad inputs | 19.12.2021 | 5 | 28 |

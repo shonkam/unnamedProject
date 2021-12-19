@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const locationModel = new mongoose.Schema({
+const locationSchema = new mongoose.Schema({
   address: {
     type: String,
     required: true
@@ -19,4 +19,4 @@ const locationModel = new mongoose.Schema({
   }
 })
 
-export default mongoose.model('Location', locationModel)
+export default mongoose.model('Location', locationSchema)

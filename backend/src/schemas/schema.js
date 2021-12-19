@@ -3,9 +3,9 @@ const { merge } = pkg
 import { makeExecutableSchema } from '@graphql-tools/schema'
 
 import {
-  typeDefs as UserTypeDefs,
-  resolvers as userResolvers,
-} from './user.js'
+  typeDefs as CustomerTypeDefs,
+  resolvers as customerResolvers,
+} from './customer.js'
 
 import {
   typeDefs as StoreTypeDefs,
@@ -13,6 +13,6 @@ import {
 } from './store.js'
 
 export const schema = makeExecutableSchema({
-  typeDefs: [UserTypeDefs, StoreTypeDefs],
-  resolvers: merge(userResolvers, storeResolvers),
+  typeDefs: [CustomerTypeDefs, StoreTypeDefs],
+  resolvers: merge(customerResolvers, storeResolvers),
 })

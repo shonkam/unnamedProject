@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import { gql } from 'apollo-server-express'
 import { UserInputError } from 'apollo-server-express'
-import User from '../mongooseModels/userModel.js'
+import Customer from '../mongooseModels/customerModel.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
@@ -9,9 +9,8 @@ dotenv.config()
 const JWT_SECRET = process.env.JWT_SECRET
 
 export const typeDefs = gql`
-  type User {
-    username: String!
-    password: String!
+  type Customer {
+    email: String!
     id: ID!
   }
 
@@ -20,7 +19,7 @@ export const typeDefs = gql`
   }
   
   type Query {
-    allUsers(username: String): [User]
+    allCustomers(email: String): [Customer]
   }
 
   type Message {
@@ -29,17 +28,17 @@ export const typeDefs = gql`
 
   type Mutation {
 
-    addUser(
-      username: String!
+    addCustomer(
+      email: String!
       password: String!
-    ): User
+    ): Customer
 
-    deleteUser(
-      username: String!
+    deleteCustomer(
+      email: String!
     ): Message
 
-    login(
-      username: String!
+    loginCustomer(
+      email: String!
       password: String!
     ): Token
   }
@@ -47,15 +46,15 @@ export const typeDefs = gql`
 
 export const resolvers = {
   Query: {
-    allUsers: async (root, args) => {
+    allCustomers: async (root, args) => {
       try {
-        if (args.username) {
-          const response = await User.findOne({ username: args.username })
+        if (args.email) {
+          const response = await Customer.findOne({ email: args.email })
           //todo better work-around
           return [response]
         }
         else {
-          return await User.find({})
+          return await Customer.find({})
         }
       } catch (error) {
         //todo better error handling
@@ -67,16 +66,15 @@ export const resolvers = {
   },
 
   Mutation: {
-    addUser: async (root, args) => {
+    addCustomer: async (root, args) => {
       try {
         const hashedPassword = await bcrypt.hash(args.password, 10)
-
-        const newUser = new User({
-          username: args.username,
+        const newCustomer = new Customer({
+          email: args.email,
           password: hashedPassword
         })
 
-        return await newUser.save()
+        return await newCustomer.save()
 
       } catch (error) {
         //todo better error handling
@@ -86,39 +84,39 @@ export const resolvers = {
       }
     },
 
-    deleteUser: async (root, args) => {
+    deleteCustomer: async (root, args) => {
       try {
-        const user = await User.findOne({ username: args.username })
-        await User.findByIdAndDelete(user.id)
+        const customer = await Customer.findOne({ email: args.email })
+        await Customer.findByIdAndDelete(customer.id)
 
-        return { message: `Account ${args.username} was successfully deleted` }
+        return { message: `Account "${args.email}" was successfully deleted` }
       } catch (error) {
         //todo better error handling
         console.log('followed error occured: ', error)
       }
     },
 
-    login: async (root, args) => {
+    loginCustomer: async (root, args) => {
       try {
-        const user = await User.findOne({ username: args.username })
+        const customer = await Customer.findOne({ email: args.email })
 
-        if (!user) {
+        if (!customer) {
           throw new UserInputError('Check credentials')
         }
 
         // compare returns true if the password given by user matches with the hashed password
-        const passwordIsValid = await bcrypt.compare(args.password, user.password)
+        const passwordIsValid = await bcrypt.compare(args.password, customer.password)
 
         if (!passwordIsValid) {
           throw new UserInputError('Check credentials')
         }
 
-        const userDataForToken = {
-          id: user._id,
-          username: user.username
+        const customerDataForToken = {
+          id: customer._id,
+          email: customer.email
         }
 
-        const token = await jwt.sign(userDataForToken, JWT_SECRET)
+        const token = await jwt.sign(customerDataForToken, JWT_SECRET)
 
         return { tokenValue: token }
       } catch (error) {

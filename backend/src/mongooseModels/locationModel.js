@@ -10,7 +10,7 @@ const locationSchema = new mongoose.Schema({
     required: true
   },
   postalNumber: {
-    type: String,
+    type: Number,
     required: true
   },
   country: {

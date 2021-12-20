@@ -26,3 +26,8 @@ Improved mongoose models
 Converted user into customer
 Implemented login mutation for stores
 Added tests for testing the behaviour during bad inputs | 19.12.2021 | 5 | 28 |
+| Added models for products and orders
+Improved existing models
+Implemented JWT verification for requests 
+Implemented mutation for adding a product
+Implemented query for products | 20.12.2021 | 5 | 33 |

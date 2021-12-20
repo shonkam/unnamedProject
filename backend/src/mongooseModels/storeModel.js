@@ -7,7 +7,9 @@ const storeSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-
+  // email validation won't be done here
+  // again as it already done both in
+  // the client and during the mutation
   email: {
     type: String,
     required: true,
@@ -29,21 +31,10 @@ const storeSchema = new mongoose.Schema({
     required: true
   },
 
-  categories: {
-    type: mongoose.Schema.Types.Mixed,
-    type: ['Category']
-  }
-
-  /*
-  // todo
   products: {
-    type: mongoose.Schema.Types.Mixed,
+    type: mongoose.Schema.Types.ObjectId,
     type: ['Product']
   }
-  */
-  // email validation won't be done here
-  // again as it already done both in
-  // the client and during the mutation
 
 })
 

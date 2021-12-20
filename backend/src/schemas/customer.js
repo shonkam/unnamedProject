@@ -113,7 +113,8 @@ export const resolvers = {
 
         const customerDataForToken = {
           id: customer._id,
-          email: customer.email
+          email: customer.email,
+          type: 'customer'
         }
 
         const token = await jwt.sign(customerDataForToken, JWT_SECRET)

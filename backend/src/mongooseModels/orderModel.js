@@ -4,20 +4,26 @@ const orderSchema = new mongoose.Schema({
 
   customer: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Customer'
+    ref: 'Customer',
+    required: true
   },
   store: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Store'
+    ref: 'Store',
+    required: true
   },
-  items: [{
+  items: {
     type: mongoose.Schema.Types.ObjectId,
-    //todo
-    // ref: 'Product'
-  }],
+    ref: ['Product'],
+    required: true
+  },
   date: {
     //todo
     date: new Date()
+  },
+  orderSum: {
+    type: Number,
+    required: true
   }
 })
 

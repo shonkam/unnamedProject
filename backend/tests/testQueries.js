@@ -10,19 +10,18 @@ export const ALL_STORES = gql`
   }
 `
 export const ADD_STORE = gql`
-  mutation AddStore($name: String!, $address: String!, $city: String!, $postalNumber: String!, $country: String!, $categories: [String], $password: String!, $email: String!) {
-  addStore(name: $name, address: $address, city: $city, postalNumber: $postalNumber, country: $country, categories: $categories, password: $password, email: $email) {
-    email
-    name
-    categories
-    location {
-      country
-      postalNumber
-      city
-      address
+  mutation AddStore($email: String!, $password: String!, $name: String!, $address: String!, $city: String!, $postalNumber: Int!, $country: String!) {
+    addStore(email: $email, password: $password, name: $name, address: $address, city: $city, postalNumber: $postalNumber, country: $country) {
+      name
+      email
+      location {
+        country
+        postalNumber
+        address
+        city
+      }
     }
   }
-}
 `
 
 export const DELETE_STORE = gql`

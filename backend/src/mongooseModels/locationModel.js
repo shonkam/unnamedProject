@@ -1,13 +1,17 @@
 import mongoose from 'mongoose'
 
-const locationSchema = new mongoose.Schema({
+export const locationSchema = new mongoose.Schema({
   address: {
     type: String,
-    required: true
+    required: true,
+    trim: true,
+    lowercase: true
   },
   city: {
     type: String,
-    required: true
+    required: true,
+    trim: true,
+    lowercase: true
   },
   postalNumber: {
     type: Number,
@@ -15,7 +19,9 @@ const locationSchema = new mongoose.Schema({
   },
   country: {
     type: String,
-    required: true
+    required: true,
+    trim: true,
+    uppercase: true
   }
 })
 

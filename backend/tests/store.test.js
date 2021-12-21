@@ -17,56 +17,60 @@ describe('tests for users ', () => {
         "email": "testStore@gmail.com",
         "password": "testStorePassword",
         "name": "testStore",
-        "address": "test address",
-        "city": "test city",
-        "postalNumber": "test postal number",
-        "country": "test country",
-        "categories": ["books", "writing"]
+        "address": "test address      ",
+        "city": "OUlu",
+        "postalNumber": 90000,
+        "country": "finlaND"
       }
     })
 
     expect(response.data.addStore.name).toBe('testStore')
+    expect(response.data.addStore.email).toBe('teststore@gmail.com')
+    expect(response.data.addStore.location.address).toBe('test address')
+    expect(response.data.addStore.location.city).toBe('oulu')
+    expect(response.data.addStore.location.address).toBe('test address')
+    expect(response.data.addStore.location.country).toBe('FINLAND')
+    expect(response.data.addStore.location.postalNumber).toBe('90000')
     expect(response.data.addStore.password).toBeFalsy()
   })
-
+  /*
   it('creates a new store', async () => {
     const response = await testServer.executeOperation({
       query: ADD_STORE,
       variables: {
-        "email": "anotherTestStore@gmail.com",
-        "password": "anotherTestStorePassword",
-        "name": "anotherTestStore",
-        "address": "another test address",
-        "city": "another test city",
-        "postalNumber": "another test postal number",
-        "country": "another test country",
-        "categories": ["books", "writing"]
+        "email": "constantTestStore@gmail.com",
+        "password": "constantTestStorePassword",
+        "name": "constantTestStore",
+        "address": "constant test address",
+        "city": "constant test city",
+        "postalNumber": 9000,
+        "country": "constant test country"
       }
     })
 
-    expect(response.data.addStore.name).toBe('anotherTestStore')
+    expect(response.data.addStore.name).toBe('constantTestStore')
     expect(response.data.addStore.password).toBeFalsy()
   })
-
+  */
   it('fetches all stores', async () => {
     const response = await testServer.executeOperation({
       query: ALL_STORES,
       variables: {}
     })
 
-    expect(response.data.allStores[0].name).toBe('testStore')
-    expect(response.data.allStores[1].name).toBe('anotherTestStore')
+    expect(response.data.allStores[0].name).toBe('constantTestStore')
+    expect(response.data.allStores[1].name).toBe('testStore')
   })
 
   it('fetches a single store', async () => {
     const response = await testServer.executeOperation({
       query: ALL_STORES,
       variables: {
-        "name": "anotherTestStore"
+        "name": "constantTestStore"
       }
     })
 
-    expect(response.data.allStores[0].name).toBe('anotherTestStore')
+    expect(response.data.allStores[0].name).toBe('constantTestStore')
   })
 
   it('login with a new store', async () => {
@@ -93,23 +97,40 @@ describe('tests for users ', () => {
     expect(response.errors[0].message).toBe("Check credentials")
   })
 
-  it('deletes a store', async () => {
+  it('fails to delete store without token', async () => {
+
+
     const response = await testServer.executeOperation({
       query: DELETE_STORE,
       variables: {
         "email": "testStore@gmail.com"
       }
     })
-    expect(response.data.deleteStore.message).toBe('Store was successfully deleted')
+
+    expect(response.errors[0].message).toBe('not authorized')
   })
 
   it('deletes a store', async () => {
-    const response = await testServer.executeOperation({
-      query: DELETE_STORE,
+    const loginResponse = await testServer.executeOperation({
+      query: LOGIN_STORE,
       variables: {
-        "email": "anotherTestStore@gmail.com"
+        "email": "testStore@gmail.com",
+        "password": "testStorePassword"
       }
     })
+    console.log(loginResponse.data.loginStore.tokenValue)
+    const storeToken = loginResponse.data.loginStore.tokenValue
+
+    const response = await testServer.executeOperation({
+      query: DELETE_STORE,
+      headers: {
+        authorization: `bearer ${storeToken}`
+      },
+      variables: {
+        "email": "testStore@gmail.com"
+      }
+    })
+    console.log(response)
     expect(response.data.deleteStore.message).toBe('Store was successfully deleted')
   })
 })

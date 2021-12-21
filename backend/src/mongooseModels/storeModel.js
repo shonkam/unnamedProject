@@ -1,11 +1,12 @@
 import mongoose from 'mongoose'
-
+import { locationSchema } from './locationModel.js'
 const storeSchema = new mongoose.Schema({
 
   name: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    trim: true
   },
   // email validation won't be done here
   // again as it already done both in
@@ -25,11 +26,7 @@ const storeSchema = new mongoose.Schema({
     required: true
   },
 
-  location: {
-    type: mongoose.Schema.Types.Mixed,
-    ref: 'Location',
-    required: true
-  },
+  location: locationSchema,
 
   products: {
     type: mongoose.Schema.Types.ObjectId,

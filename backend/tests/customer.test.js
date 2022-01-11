@@ -28,7 +28,7 @@ describe('tests for customers ', () => {
       query: ADD_CUSTOMER,
       variables: {
         "email": "test@gmail.com",
-        "password": ""
+        "password": "password"
       }
     })
 

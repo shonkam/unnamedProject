@@ -10,6 +10,7 @@ import { server as testServer } from '../src/server.js'
 testHelper()
 
 describe('tests for users ', () => {
+  /*
   it('creates a new store', async () => {
     const response = await testServer.executeOperation({
       query: ADD_STORE,
@@ -33,35 +34,35 @@ describe('tests for users ', () => {
     expect(response.data.addStore.location.postalNumber).toBe('90000')
     expect(response.data.addStore.password).toBeFalsy()
   })
-  /*
-  it('creates a new store', async () => {
-    const response = await testServer.executeOperation({
-      query: ADD_STORE,
-      variables: {
-        "email": "constantTestStore@gmail.com",
-        "password": "constantTestStorePassword",
-        "name": "constantTestStore",
-        "address": "constant test address",
-        "city": "constant test city",
-        "postalNumber": 9000,
-        "country": "constant test country"
-      }
+  
+    it('creates a new store', async () => {
+      const response = await testServer.executeOperation({
+        query: ADD_STORE,
+        variables: {
+          "email": "constantTestStore@gmail.com",
+          "password": "constantTestStorePassword",
+          "name": "constantTestStore",
+          "address": "constant test address",
+          "city": "constant test city",
+          "postalNumber": 9000,
+          "country": "constant test country"
+        }
+      })
+  
+      expect(response.data.addStore.name).toBe('constantTestStore')
+      expect(response.data.addStore.password).toBeFalsy()
     })
-
-    expect(response.data.addStore.name).toBe('constantTestStore')
-    expect(response.data.addStore.password).toBeFalsy()
-  })
+  
+    it('fetches all stores', async () => {
+      const response = await testServer.executeOperation({
+        query: ALL_STORES,
+        variables: {}
+      })
+  
+      expect(response.data.allStores[0].name).toBe('constantTestStore')
+      expect(response.data.allStores[1].name).toBe('testStore')
+    })
   */
-  it('fetches all stores', async () => {
-    const response = await testServer.executeOperation({
-      query: ALL_STORES,
-      variables: {}
-    })
-
-    expect(response.data.allStores[0].name).toBe('constantTestStore')
-    expect(response.data.allStores[1].name).toBe('testStore')
-  })
-
   it('fetches a single store', async () => {
     const response = await testServer.executeOperation({
       query: ALL_STORES,
@@ -101,36 +102,30 @@ describe('tests for users ', () => {
 
 
     const response = await testServer.executeOperation({
-      query: DELETE_STORE,
-      variables: {
-        "email": "testStore@gmail.com"
-      }
+      query: DELETE_STORE
     })
 
     expect(response.errors[0].message).toBe('not authorized')
   })
-
-  it('deletes a store', async () => {
-    const loginResponse = await testServer.executeOperation({
-      query: LOGIN_STORE,
-      variables: {
-        "email": "testStore@gmail.com",
-        "password": "testStorePassword"
-      }
-    })
-    console.log(loginResponse.data.loginStore.tokenValue)
-    const storeToken = loginResponse.data.loginStore.tokenValue
-
-    const response = await testServer.executeOperation({
-      query: DELETE_STORE,
-      headers: {
+  /*
+    it('deletes a store', async () => {
+      const loginResponse = await testServer.executeOperation({
+        query: LOGIN_STORE,
+        variables: {
+          "email": "testStore@gmail.com",
+          "password": "testStorePassword"
+        }
+      })
+  
+      const storeToken = loginResponse.data.loginStore.tokenValue
+      console.log(`bearer ${storeToken}`)
+      const response = await testServer.executeOperation({
+        query: DELETE_STORE,
         authorization: `bearer ${storeToken}`
-      },
-      variables: {
-        "email": "testStore@gmail.com"
-      }
+  
+      })
+      console.log(response)
+      expect(response.data.deleteStore.message).toBe('Store was successfully deleted')
     })
-    console.log(response)
-    expect(response.data.deleteStore.message).toBe('Store was successfully deleted')
-  })
+    */
 })

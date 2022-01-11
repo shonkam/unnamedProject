@@ -31,6 +31,6 @@ Improved existing models
 Implemented JWT verification for requests 
 Implemented mutation for adding a product
 Implemented query for products | 20.12.2021 | 5 | 33 |
-| Improved test cases 
+| Improved test cases
 Improved mongoose models
-Added authorization to deleteStore mutation||2||
+Added authorization to deleteStore mutation | 11.01.2022 | 4 | 37 |

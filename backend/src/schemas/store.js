@@ -58,9 +58,7 @@ export const typeDefs = gql`
       country: String!
     ): Store
 
-    deleteStore(
-      email: String!
-    ): Message
+    deleteStore: Message
 
     loginStore(
       email: String!
@@ -210,7 +208,7 @@ export const resolvers = {
         return { tokenValue: token }
       } catch (error) {
         //todo better error handling
-        console.log('followed error occured while creating a new user', error)
+        console.log('followed error occured while logging in', error)
 
         return error
       }

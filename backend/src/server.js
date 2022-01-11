@@ -12,9 +12,10 @@ const JWT_SECRET = process.env.JWT_SECRET
 export const server = new ApolloServer({
   schema: schema,
   cors: true,
-  context: async ({ req }) => {
+  context: async ({ request }) => {
     try {
-      const authorization = req ? req.headers.authorization : null
+      console.log(request)
+      const authorization = request ? request.headers.authorization : null
       if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
         const decodedToken = jwt.verify(authorization.substring(7), JWT_SECRET)
 

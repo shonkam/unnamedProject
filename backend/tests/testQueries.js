@@ -25,8 +25,8 @@ export const ADD_STORE = gql`
 `
 
 export const DELETE_STORE = gql`
-  mutation DeleteStore($email: String!) {
-    deleteStore(email: $email) {
+  mutation DeleteStore {
+    deleteStore {
       message
     }
   }

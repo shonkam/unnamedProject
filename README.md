@@ -34,3 +34,6 @@ Implemented query for products | 20.12.2021 | 5 | 33 |
 | Improved test cases
 Improved mongoose models
 Added authorization to deleteStore mutation | 11.01.2022 | 4 | 37 |
+| Connected frontend to backend
+Implemented signing up functionality to frontend
+ | 11.01.2022 | 2 | 39 |

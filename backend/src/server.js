@@ -14,7 +14,6 @@ export const server = new ApolloServer({
   cors: true,
   context: async ({ request }) => {
     try {
-      console.log(request)
       const authorization = request ? request.headers.authorization : null
       if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
         const decodedToken = jwt.verify(authorization.substring(7), JWT_SECRET)

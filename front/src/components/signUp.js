@@ -1,19 +1,19 @@
-import React from 'react';
-import { Formik, Form, Field } from 'formik';
-import * as yup from 'yup';
+import React from 'react'
+import { Formik, Form, Field } from 'formik'
+import * as yup from 'yup'
+import useSignUp from '../hooks/useSignUp'
 
 const initialValues = {
-  username: '',
+  email: '',
   password: '',
   passwordConfirmation: ''
 }
 
 const validationSchema = yup.object().shape({
-  username: yup
+  email: yup
     .string()
-    .min(4)
-    .max(15)
-    .required('Username is required'),
+    .email()
+    .required('Email is required'),
   password: yup
     .string()
     .min(5)
@@ -25,11 +25,30 @@ const validationSchema = yup.object().shape({
     .required('Password confirmation is required')
 });
 
-function SignUp() {
+const SignUp = () => {
+  const [signUp] = useSignUp()
 
-  function submitSignUp(values) {
+  const submitSignUp = async (values) => {
     try {
       console.log(values)
+      const email = values.email
+      const password = values.password
+
+      const response = await signUp(email, password)
+      // mutation returns a boolean
+      // informing about the status
+      // of request success
+      //
+      // returning true means that
+      // the request was successfully
+      // handled
+
+      if (response) {
+        console.log('Signed up successfully')
+      }
+      else {
+        console.log('Something went wrong, please try again')
+      }
       //todo noti
     } catch (error) {
       console.log(error)
@@ -46,11 +65,11 @@ function SignUp() {
           validationSchema={validationSchema}
         >
           <Form>
-            <Field name='username' placeholder='Username' />
+            <Field name='email' placeholder='Email' />
             <Field name='password' type='password' placeholder='Password' />
             <Field name='passwordConfirmation' type='password' placeholder='Confirm password' />
             <button type='submit' >
-              Submit
+              Register
             </button>
           </Form>
         </Formik>

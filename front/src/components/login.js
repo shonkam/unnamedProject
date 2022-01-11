@@ -27,7 +27,7 @@ function Login() {
           onSubmit={submitLogin}
         >
           <Form>
-            <Field name='username' placeholder='Username' />
+            <Field name='email' placeholder='Email' />
             <Field name='password' type='password' placeholder='Password' />
             <button type='submit' >
               Submit

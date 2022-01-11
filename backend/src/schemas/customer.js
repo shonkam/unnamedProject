@@ -26,12 +26,16 @@ export const typeDefs = gql`
     message: String!
   }
 
+  type RequestSuccessful {
+    successful: Boolean!
+  }
+
   type Mutation {
 
     addCustomer(
       email: String!
       password: String!
-    ): Customer
+    ): RequestSuccessful
 
     deleteCustomer(
       email: String!
@@ -73,14 +77,14 @@ export const resolvers = {
           email: args.email,
           password: hashedPassword
         })
-
-        return await newCustomer.save()
+        await newCustomer.save()
+        return { successful: true }
 
       } catch (error) {
         //todo better error handling
         console.log('followed error occured while creating a new user', error)
 
-        return error
+        return { successful: false }
       }
     },
 

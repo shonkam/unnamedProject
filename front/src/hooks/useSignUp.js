@@ -6,15 +6,18 @@ const useSignUp = () => {
 
   const addCustomer = async (email, password) => {
 
-    // mutation return a message
-    // containing info about the
-    // success of the operation
+    // mutation returns a boolean
+    // about the success of the operation
     const { data } = await mutate({
       variables: {
         email,
         password
       }
     })
+
+    // received boolean is passed
+    // into signUp, where the success
+    // status is checked
     return data.addCustomer.successful
   }
   return [addCustomer]

@@ -60,7 +60,7 @@ export const ADD_CUSTOMER = gql`
 export const LOGIN_CUSTOMER = gql`
   mutation LoginCustomer($email: String!, $password: String!) {
     loginCustomer(email: $email, password: $password) {
-      tokenValue
+      token
     }
   }
 `

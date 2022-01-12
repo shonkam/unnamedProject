@@ -30,11 +30,11 @@ const SignUp = () => {
 
   const submitSignUp = async (values) => {
     try {
-      console.log(values)
       const email = values.email
       const password = values.password
 
       const response = await signUp(email, password)
+
       // mutation returns a boolean
       // informing about the status
       // of request success
@@ -42,9 +42,9 @@ const SignUp = () => {
       // returning true means that
       // the request was successfully
       // handled
-
       if (response) {
         console.log('Signed up successfully')
+        //todo noti
       }
       else {
         console.log('Something went wrong, please try again')

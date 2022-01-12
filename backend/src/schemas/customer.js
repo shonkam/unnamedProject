@@ -15,7 +15,7 @@ export const typeDefs = gql`
   }
 
   type Token {
-    tokenValue: String!
+    token: String!
   }
   
   type Query {
@@ -123,7 +123,7 @@ export const resolvers = {
 
         const token = await jwt.sign(customerDataForToken, JWT_SECRET)
 
-        return { tokenValue: token }
+        return { token: token }
       } catch (error) {
         //todo better error handling
         console.log('followed error occured while creating a new user', error)

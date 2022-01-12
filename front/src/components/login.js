@@ -1,17 +1,46 @@
-import React from 'react';
-import { Formik, Form, Field } from 'formik';
+import React from 'react'
+import { Formik, Form, Field } from 'formik'
+import * as yup from 'yup'
+import useLogin from '../hooks/useLogin'
 
 const initialValues = {
-  username: '',
+  email: '',
   password: ''
 }
 
-function Login() {
+const validationSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email()
+    .required('Email is required'),
+  password: yup
+    .string()
+    .min(5)
+    .max(32)
+    .required('Password is required'),
+})
 
-    //submit login credentials
-    function submitLogin(values) {
-      try {
-        console.log(values)
+const Login = () => {
+  const [login] = useLogin()
+
+  //submit login credentials
+  const submitLogin = async (values) => {
+    try {
+      const email = values.email
+      const password = values.password
+
+      const response = await login(email, password)
+
+      // login hook returns false
+      // if the response from the
+      // server doesn't include
+      // token
+      if (!response) {
+        console.log('Login failed, please check your credentials')
+      }
+      else {
+        console.log('Your token is: ', response)
+      }
         //todo noti
       } catch (error) {
         console.log(error)
@@ -25,6 +54,7 @@ function Login() {
         <Formik
           initialValues={initialValues}
           onSubmit={submitLogin}
+          validationSchema={validationSchema}
         >
           <Form>
             <Field name='email' placeholder='Email' />

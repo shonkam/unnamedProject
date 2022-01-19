@@ -1,7 +1,10 @@
 import React from 'react'
 import { Formik, Form, Field } from 'formik'
 import * as yup from 'yup'
+import { useNavigate } from 'react-router-dom'
 import useLogin from '../hooks/useLogin'
+import { useDispatch } from 'react-redux'
+import { setUserLoggedIn } from '../reducers/userReducer'
 
 const initialValues = {
   email: '',
@@ -22,6 +25,8 @@ const validationSchema = yup.object().shape({
 
 const Login = () => {
   const [login] = useLogin()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   //submit login credentials
   const submitLogin = async (values) => {
@@ -40,6 +45,9 @@ const Login = () => {
       }
       else {
         console.log('Your token is: ', response)
+        await localStorage.setItem('userToken', response)
+        navigate('/')
+        await dispatch(setUserLoggedIn())
       }
         //todo noti
       } catch (error) {

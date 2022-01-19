@@ -37,3 +37,6 @@ Added authorization to deleteStore mutation | 11.01.2022 | 4 | 37 |
 | Connected frontend to backend
 Implemented signing up functionality to frontend | 11.01.2022 | 2 | 39 |
 | Implemented login functionality to frontend | 12.01.2022 | 1 | 40 |
+| Added Redux for state management
+Implemented logout functionality
+Changes for behaviour depending if user is signed in | 19.01.2022 | 4 | 44 |

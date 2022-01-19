@@ -23,7 +23,7 @@ const validationSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref('password')], "Passwords don't match")
     .required('Password confirmation is required')
-});
+})
 
 const SignUp = () => {
   const [signUp] = useSignUp()

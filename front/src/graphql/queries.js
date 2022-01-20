@@ -15,3 +15,11 @@ export const LOGIN_CUSTOMER = gql`
     }
   }
 `
+
+export const LOGIN_STORE = gql`
+  mutation LoginStore($email: String!, $password: String!) {
+    loginStore(email: $email, password: $password) {
+      token
+    }
+  }
+`

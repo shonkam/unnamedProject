@@ -42,3 +42,6 @@ Implemented signing up functionality to frontend | 11.01.2022 | 2 | 39 |
 | Added Redux for state management
 Implemented logout functionality
 Changes for behaviour depending if user is signed in | 19.01.2022 | 4 | 44 |
+| Implemented login functionality for stores
+Adapted formik into MUI
+Styling with MUI | 20.01.2022 | 2 | 46 |

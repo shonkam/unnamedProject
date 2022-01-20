@@ -5,6 +5,7 @@ import Login from './components/login'
 import LinkHeader from './components/linkHeader'
 import SignUp from './components/signUp'
 import Logout from './components/logout'
+import StoreLogin from './components/storeLogin'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { setUserLoggedIn } from './reducers/userReducer'
@@ -23,22 +24,25 @@ const App = () => {
   const userLoggedIn = useSelector(state => state.user)
 
   return (
-    <BrowserRouter>
-      <LinkHeader />
-      {userLoggedIn
-        ?
-        <Routes>
-          <Route path='/logout' element={<Logout />} />
-          <Route exact path='/' element={<Home />} />
-        </Routes>
-        :
-        <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<SignUp />} />
-          <Route exact path='/' element={<Home />} />
-        </Routes>
-      }
-    </BrowserRouter>
+    <div style={{ flex: 1 }}>
+      <BrowserRouter>
+        <LinkHeader />
+        {userLoggedIn
+          ?
+          <Routes>
+            <Route path='/logout' element={<Logout />} />
+            <Route exact path='/' element={<Home />} />
+          </Routes>
+          :
+          <Routes>
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route exact path='/' element={<Home />} />
+            <Route exact path='/storelogin' element={<StoreLogin />} />
+          </Routes>
+        }
+      </BrowserRouter>
+    </div>
   )
 }
 

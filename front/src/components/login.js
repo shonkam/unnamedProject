@@ -1,25 +1,28 @@
 import React from 'react'
-import { Formik, Form, Field } from 'formik'
+import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
 import useLogin from '../hooks/useLogin'
 import { useDispatch } from 'react-redux'
 import { setUserLoggedIn } from '../reducers/userReducer'
-
-const initialValues = {
-  email: '',
-  password: ''
-}
+import {
+  Toolbar,
+  AppBar,
+  Button,
+  Container,
+  Box,
+  Typography,
+  TextField
+} from '@mui/material'
 
 const validationSchema = yup.object().shape({
   email: yup
-    .string()
-    .email()
+    .string('Enter your email')
+    .email('Enter a valid email')
     .required('Email is required'),
   password: yup
-    .string()
-    .min(5)
-    .max(32)
+    .string('Enter your password')
+    .min(7, 'Password should be of minimum 7 characters length')
     .required('Password is required'),
 })
 
@@ -27,6 +30,17 @@ const Login = () => {
   const [login] = useLogin()
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  const loginForm = useFormik({
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      submitLogin(values)
+    }
+  })
 
   //submit login credentials
   const submitLogin = async (values) => {
@@ -46,34 +60,70 @@ const Login = () => {
       else {
         console.log('Your token is: ', response)
         await localStorage.setItem('userToken', response)
+        await localStorage.setItem('userType', 'customer')
         navigate('/')
         await dispatch(setUserLoggedIn())
       }
-        //todo noti
-      } catch (error) {
-        console.log(error)
-        //todo noti
-      }
+      //todo noti
+    } catch (error) {
+      console.log(error)
+      //todo noti
     }
-
-    return (
-      <div>
-        login
-        <Formik
-          initialValues={initialValues}
-          onSubmit={submitLogin}
-          validationSchema={validationSchema}
-        >
-          <Form>
-            <Field name='email' placeholder='Email' />
-            <Field name='password' type='password' placeholder='Password' />
-            <button type='submit' >
-              Submit
-            </button>
-          </Form>
-        </Formik>
-      </div>
-    )
   }
+
+  return (
+    <Container maxWidth='xs'>
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        paddingTop: 15
+      }}>
+        <Typography
+          component='h1'
+          variant='h5'
+          alignSelf='center'
+        >
+          Login
+        </Typography>
+        <Box
+          component='form'
+          onSubmit={loginForm.handleSubmit}
+        >
+          <TextField
+            margin='normal'
+            fullWidth
+            id='email'
+            name='email'
+            label='Email'
+            value={loginForm.values.email}
+            onChange={loginForm.handleChange}
+            error={loginForm.touched.email && Boolean(loginForm.errors.email)}
+            helperText={loginForm.touched.email && loginForm.errors.email}
+          />
+          <TextField
+            margin='normal'
+            fullWidth
+            id='password'
+            name='password'
+            label='Password'
+            type='password'
+            value={loginForm.values.password}
+            onChange={loginForm.handleChange}
+            error={loginForm.touched.password && Boolean(loginForm.errors.password)}
+            helperText={loginForm.touched.password && loginForm.errors.password}
+          />
+          <Button
+            color='primary'
+            variant='contained'
+            fullWidth
+            type='submit'
+          >
+            Submit
+          </Button>
+        </Box>
+      </Box>
+    </Container>
+  )
+}
 
 export default Login

@@ -35,7 +35,7 @@ export const DELETE_STORE = gql`
 export const LOGIN_STORE = gql`
   mutation LoginStore($email: String!, $password: String!) {
     loginStore(email: $email, password: $password) {
-      tokenValue
+      token
     }
   }
 `

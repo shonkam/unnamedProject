@@ -2,12 +2,10 @@ import React from 'react'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
-import useLogin from '../hooks/useLogin'
+import useStoreLogin from '../../hooks/useStoreLogin'
 import { useDispatch } from 'react-redux'
-import { setUserLoggedIn } from '../reducers/userReducer'
+import { setUserLoggedIn } from '../../reducers/userReducer'
 import {
-  Toolbar,
-  AppBar,
   Button,
   Container,
   Box,
@@ -22,15 +20,16 @@ const validationSchema = yup.object().shape({
     .required('Email is required'),
   password: yup
     .string('Enter your password')
-    .min(7, 'Password should be of minimum 7 characters length')
+    .min(7, 'Password should be atleast 7 characters long')
     .required('Password is required'),
 })
 
-const Login = () => {
-  const [login] = useLogin()
+const StoreLogin = () => {
+  const [login] = useStoreLogin()
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  //submit login credentials
   const loginForm = useFormik({
     initialValues: {
       email: '',
@@ -60,7 +59,7 @@ const Login = () => {
       else {
         console.log('Your token is: ', response)
         await localStorage.setItem('userToken', response)
-        await localStorage.setItem('userType', 'customer')
+        await localStorage.setItem('userType', 'store')
         navigate('/')
         await dispatch(setUserLoggedIn())
       }
@@ -126,4 +125,5 @@ const Login = () => {
   )
 }
 
-export default Login
+
+export default StoreLogin

@@ -42,6 +42,10 @@ export const typeDefs = gql`
     token: String!
   }
 
+  type RequestSuccessful {
+    successful: Boolean!
+  }
+
   type Query {
     allStores(name: String): [Store]
     allProducts(store: String, category: String): [Product]
@@ -56,7 +60,7 @@ export const typeDefs = gql`
       city: String!
       postalNumber: Int!
       country: String!
-    ): Store
+    ): RequestSuccessful
 
     deleteStore: Message
 
@@ -159,9 +163,11 @@ export const resolvers = {
           }
         })
 
-        return await newStore.save()
+        await newStore.save()
+        return { successful: true }
       } catch (error) {
         console.log('error occurred while adding a store: ', error)
+        return { successful: false }
       }
     },
 
@@ -187,6 +193,7 @@ export const resolvers = {
         const store = await Store.findOne({ email: args.email })
 
         if (!store) {
+          console.log('eka')
           throw new UserInputError('Check credentials')
         }
 

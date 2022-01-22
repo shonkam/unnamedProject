@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import {
-  Toolbar,
   AppBar,
   Button,
   Container,
@@ -39,10 +38,7 @@ const LinkHeader = () => {
         <Container maxWidth='xl'>
           <Box sx={{
             display: 'flex',
-            backgroundColor: 'primary.main',
-
-
-
+            backgroundColor: 'primary.main'
           }}>
             <Button variant='outlined'>
               <Link to='/' style={{ color: 'white' }}>Home</Link>

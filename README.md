@@ -44,4 +44,6 @@ Implemented logout functionality
 Changes for behaviour depending if user is signed in | 19.01.2022 | 4 | 44 |
 | Implemented login functionality for stores
 Adapted formik into MUI
-Styling with MUI | 20.01.2022 | 2 | 46 |
+Header and Login styling with MUI | 20.01.2022 | 2 | 46 |
+| Sign up styling with MUI
+Functionality to register either as a customer or store | 22.01.2022 | 4 | 50 |

@@ -126,7 +126,7 @@ export const resolvers = {
         return { token: token }
       } catch (error) {
         //todo better error handling
-        console.log('followed error occured while creating a new user', error)
+        console.log('followed error occured while logging in as a customer', error)
 
         return error
       }

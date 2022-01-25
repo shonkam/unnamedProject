@@ -5,8 +5,6 @@ const productSchema = new mongoose.Schema({
   productName: {
     type: String,
     required: true,
-    unique: true,
-    lowercase: true,
     trim: true
   },
 
@@ -20,10 +18,15 @@ const productSchema = new mongoose.Schema({
     required: true
   },
 
-  productCategory: {
+  productPictureURL: {
     type: String,
-    lowercase: true,
     trim: true
+  },
+
+  productDescription: {
+    type: String,
+    trim: true,
+    required: true
   },
 
   productStore: {

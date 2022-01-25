@@ -8,6 +8,7 @@ import Logout from './components/logout'
 import StoreLogin from './components/store/storeLogin'
 import Profile from './components/customer/profile'
 import OwnStore from './components/store/ownStore'
+import AddProduct from './components/store/addProduct'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { setUserLoggedIn } from './redux/reducers/userReducer'
@@ -34,7 +35,8 @@ const App = () => {
           <Routes>
             <Route path='/logout' element={<Logout />} />
             <Route path='/profile' element={<Profile />} />
-            <Route path='ownstore' element={<OwnStore />} />
+            <Route path='/ownstore' element={<OwnStore />} />
+            <Route path='/addproduct' element={<AddProduct />} />
             <Route exact path='/' element={<Stores />} />
           </Routes>
           :

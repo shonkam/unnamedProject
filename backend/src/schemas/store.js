@@ -30,7 +30,8 @@ export const typeDefs = gql`
     productName: String!
     productPrice: Float!
     productStock: Int!
-    productCategory: String
+    productPictureURL: String!
+    productDescription: String!
     productStore: Store!
   }
 
@@ -73,8 +74,9 @@ export const typeDefs = gql`
       productName: String!
       productPrice: Float!
       productStock: Int!
-      productCategory: String
-    ): Product
+      productPictureURL: String!
+      productDescription: String!
+    ): RequestSuccessful
   }
 `
 
@@ -131,7 +133,8 @@ export const resolvers = {
           productName: args.productName,
           productPrice: args.productPrice,
           productStock: args.productStock,
-          productCategory: args.productCategory,
+          productDescription: args.productDescription,
+          productPictureURL: args.productPictureURL,
           productStore: context.currentStore.id
         })
         const savedProduct = await newProduct.save()
@@ -140,10 +143,11 @@ export const resolvers = {
         addingStore.products = addingStore.products.concat(savedProduct)
         await addingStore.save()
 
-        return savedProduct.populate('productStore')
+        return { successful: true }
       }
       catch (error) {
-        console.log('an error occurred while adding a product: ', error)
+        console.log('an error occurred while adding a new product: ', error)
+        return { successful: false }
       }
     },
 

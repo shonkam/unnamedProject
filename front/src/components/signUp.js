@@ -33,6 +33,7 @@ const validationSchema = yup.object().shape({
   storePostalNumber: yup
     .number('Enter the postal number of your store')
     .positive('Postal number can not be negative')
+    .integer('Postal number must be an integer')
     .typeError('Postal number can only contain numbers')
 })
 
@@ -63,12 +64,11 @@ const SignUp = () => {
       console.log(values)
       const userType = values.userType
 
-      const response = await signUp(values)
-
       // mutation returns a boolean
       // informing about the status
       // of request success
-      //
+      const response = await signUp(values)
+
       // returning true means that
       // the request was successfully
       // handled
@@ -82,7 +82,7 @@ const SignUp = () => {
         }
       }
       else {
-        console.log('Something went wrong, please try again')
+        console.log('Something went wrong when signing up, please try again')
       }
       //todo noti
     } catch (error) {

@@ -1,6 +1,6 @@
 import React from 'react'
-//import useAddProduct from '../hooks/useAddProduct'
-//import { useNavigate } from 'react-router-dom'
+import useAddProduct from '../../hooks/useAddProduct'
+import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import {
@@ -25,16 +25,26 @@ const validationSchema = yup.object().shape({
     .required('Product stock is required')
     .positive('Stock can not be negative')
     .integer('Stock must be an integer')
-    .typeError('Postal number can only contain numbers')
+    .typeError('Postal number can only contain numbers'),
+  productPictureURL: yup
+    .string('Enter the URL to the picture')
+    .required('Picture URL is required'),
+  productDescription: yup
+    .string('Enter the description of the product')
+    .required('Product description is required')
 })
 
 const AddProduct = () => {
+  const [addProduct] = useAddProduct()
+  const navigate = useNavigate()
 
   const addProductForm = useFormik({
     initialValues: {
       productName: '',
       productPrice: '',
-      productStock: ''
+      productStock: '',
+      productPictureURL: '',
+      productDescription: ''
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -44,6 +54,15 @@ const AddProduct = () => {
 
   const submitAddProduct = async (values) => {
     console.log('submitProduct', values)
+    try {
+      const response = await addProduct(values)
+      // todo noti
+      console.log(response)
+      navigate('/ownstore')
+    } catch (error) {
+      console.log('an error occurred while addding a product: ', error)
+    }
+
   }
 
   return (
@@ -109,6 +128,32 @@ const AddProduct = () => {
             onChange={addProductForm.handleChange}
             error={addProductForm.touched.productStock && Boolean(addProductForm.errors.productStock)}
             helperText={addProductForm.touched.productStock && addProductForm.errors.productStock}
+          />
+
+          <TextField
+            margin='normal'
+            fullWidth
+            id='productPictureURL'
+            name='productPictureURL'
+            label='Picture URL'
+            onSubmit={addProductForm.handleSubmit}
+            value={addProductForm.values.productPictureURL}
+            onChange={addProductForm.handleChange}
+            error={addProductForm.touched.productPictureURL && Boolean(addProductForm.errors.productPictureURL)}
+            helperText={addProductForm.touched.productPictureURL && addProductForm.errors.productPictureURL}
+          />
+
+          <TextField
+            margin='normal'
+            fullWidth
+            id='productDescription'
+            name='productDescription'
+            label='Description'
+            onSubmit={addProductForm.handleSubmit}
+            value={addProductForm.values.productDescription}
+            onChange={addProductForm.handleChange}
+            error={addProductForm.touched.productDescription && Boolean(addProductForm.errors.productDescription)}
+            helperText={addProductForm.touched.productDescription && addProductForm.errors.productDescription}
           />
 
           <Button

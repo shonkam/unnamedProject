@@ -4,6 +4,7 @@ import { useMutation } from '@apollo/client'
 const useSignUp = () => {
   const [mutateCustomer] = useMutation(ADD_CUSTOMER)
   const [mutateStore] = useMutation(ADD_STORE)
+
   const addUser = async (values) => {
     const email = values.email
     const password = values.password

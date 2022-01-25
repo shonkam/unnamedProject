@@ -49,3 +49,5 @@ Header and Login styling with MUI | 20.01.2022 | 2 | 46 |
 Functionality to register either as a customer or store | 22.01.2022 | 4 | 50 |
 | Improved project structure |
 | A view for store to add a new product | 25.01.2022 | 2 | 52 |
+| Functionality to add new products
+Minor bug fixes | 25.01.2022 | 3 | 55 |

@@ -31,3 +31,11 @@ export const LOGIN_STORE = gql`
     }
   }
 `
+
+export const ADD_PRODUCT = gql`
+  mutation AddProduct($productName: String!, $productPrice: Float!, $productStock: Int!, $productPictureURL: String!, $productDescription: String!) {
+    addProduct(productName: $productName, productPrice: $productPrice, productStock: $productStock, productPictureURL: $productPictureURL, productDescription: $productDescription) {
+      successful
+    }
+  }
+`

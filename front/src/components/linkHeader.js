@@ -16,18 +16,43 @@ const LinkHeader = () => {
     if (userType === 'customer') {
       // customer header
       return (
-        <div>
-          <Link to='/'>Home</Link>
-          <Link to='/logout'>Logout</Link>
-        </div>
+        <AppBar position='static'>
+          <Container maxWidth='xl'>
+            <Box sx={{
+              display: 'flex',
+              backgroundColor: 'primary.main'
+            }}>
+              <Button variant='outlined'>
+                <Link to='/' style={{ color: 'white' }}>Stores</Link>
+              </Button>
+              <Button variant='outlined'>
+                <Link to='/profile' style={{ color: 'white' }}>Profile</Link>
+              </Button>
+              <Button variant='outlined'>
+                <Link to='/logout' style={{ color: 'white' }}>Logout</Link>
+              </Button>
+            </Box>
+          </Container>
+        </AppBar>    
       )
     } else {
       // store header
-      return (
-        <div>
-          <Link to='/'>Home</Link>
-          <Link to='/logout'>Logout</Link>
-        </div>
+      return (    
+        <AppBar position='static'>
+          <Container maxWidth='xl'>
+            <Box sx={{
+              display: 'flex',
+              backgroundColor: 'primary.main'
+            }}>
+              <Button variant='outlined'>
+                <Link to='/ownstore' style={{ color: 'white' }}>Home</Link>
+              </Button>
+              <Button variant='outlined'>
+                <Link to='/logout' style={{ color: 'white' }}>Logout</Link>
+              </Button>
+            </Box>
+          </Container>
+        </AppBar>
       )
     }
   }
@@ -41,7 +66,7 @@ const LinkHeader = () => {
             backgroundColor: 'primary.main'
           }}>
             <Button variant='outlined'>
-              <Link to='/' style={{ color: 'white' }}>Home</Link>
+              <Link to='/' style={{ color: 'white' }}>Stores</Link>
             </Button>
             <Button variant='outlined'>
               <Link to='/login' style={{ color: 'white' }}>Login</Link>

@@ -47,3 +47,5 @@ Adapted formik into MUI
 Header and Login styling with MUI | 20.01.2022 | 2 | 46 |
 | Sign up styling with MUI
 Functionality to register either as a customer or store | 22.01.2022 | 4 | 50 |
+| Improved project structure |
+| A view for store to add a new product | 25.01.2022 | 2 | 52 |

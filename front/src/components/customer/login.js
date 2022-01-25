@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
 import useLogin from '../../hooks/useLogin'
 import { useDispatch } from 'react-redux'
-import { setUserLoggedIn } from '../../reducers/userReducer'
+import { setUserLoggedIn } from '../../redux/reducers/userReducer'
 import {
   Button,
   Container,

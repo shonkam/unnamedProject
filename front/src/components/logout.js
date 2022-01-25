@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setUserLoggedOut } from '../reducers/userReducer'
+import { setUserLoggedOut } from '../redux/reducers/userReducer'
 
 const Logout = () => {
   const navigate = useNavigate()

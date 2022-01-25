@@ -32,6 +32,7 @@ const validationSchema = yup.object().shape({
     .min(2, 'The name of the store should be atleast 2 characters long'),
   storePostalNumber: yup
     .number('Enter the postal number of your store')
+    .positive('Postal number can not be negative')
     .typeError('Postal number can only contain numbers')
 })
 
@@ -182,7 +183,7 @@ const SignUp = () => {
                 variant='subtitle1'
                 align='left'
               >
-                Please fill in information about your store
+                Please fill in the information about your store
               </Typography>
               <TextField
                 margin='normal'

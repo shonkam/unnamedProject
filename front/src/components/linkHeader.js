@@ -45,7 +45,7 @@ const LinkHeader = () => {
               backgroundColor: 'primary.main'
             }}>
               <Button variant='outlined'>
-                <Link to='/ownstore' style={{ color: 'white' }}>Home</Link>
+                <Link to='/ownstore' style={{ color: 'white' }}>Store</Link>
               </Button>
               <Button variant='outlined'>
                 <Link to='/addproduct' style={{ color: 'white' }}>Add product</Link>

@@ -49,7 +49,7 @@ export const typeDefs = gql`
 
   type Query {
     allStores(name: String): [Store]
-    allProducts(store: String, category: String): [Product]
+    allProducts(store: String): [Product]
   }
 
   type Mutation {

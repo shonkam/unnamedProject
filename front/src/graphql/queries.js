@@ -39,3 +39,15 @@ export const ADD_PRODUCT = gql`
     }
   }
 `
+
+export const STORE_PRODUCTS = gql`
+  query AllProducts {
+    allProducts {
+      productName
+      productPrice
+      productStock
+      productPictureURL
+      productDescription
+    }
+  }
+`

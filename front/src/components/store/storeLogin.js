@@ -60,7 +60,7 @@ const StoreLogin = () => {
         console.log('Your token is: ', response)
         await localStorage.setItem('userToken', response)
         await localStorage.setItem('userType', 'store')
-        navigate('/')
+        navigate('/ownstore')
         await dispatch(setUserLoggedIn())
       }
       //todo noti

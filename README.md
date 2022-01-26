@@ -51,3 +51,5 @@ Functionality to register either as a customer or store | 22.01.2022 | 4 | 50 |
 | A view for store to add a new product | 25.01.2022 | 2 | 52 |
 | Functionality to add new products
 Minor bug fixes | 25.01.2022 | 3 | 55 |
+| Functionality to fetch product information
+A view for store to examine currently listed products | 26.01.2022 | 3 | 58|

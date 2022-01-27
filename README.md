@@ -53,3 +53,6 @@ Functionality to register either as a customer or store | 22.01.2022 | 4 | 50 |
 Minor bug fixes | 25.01.2022 | 3 | 55 |
 | Functionality to fetch product information
 A view for store to examine currently listed products | 26.01.2022 | 3 | 58|
+|Improved routing and headers
+Improved the structure of frontend
+Multiple smaller improvements| 27.01.2022 | 3 | 61 |

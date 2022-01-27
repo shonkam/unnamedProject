@@ -43,6 +43,7 @@ export const ADD_PRODUCT = gql`
 export const STORE_PRODUCTS = gql`
   query AllProducts {
     allProducts {
+      id
       productName
       productPrice
       productStock

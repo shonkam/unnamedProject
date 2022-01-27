@@ -1,26 +1,26 @@
-const userReducer = (state = false, action) => {
+const userReducer = (state = null, action) => {
   switch (action.type) {
-    case 'USER_LOGGED_IN':
-      return action.data.logged
-    case 'USER_LOGGED_OUT':
-      return state.user === false
+    case 'SET_USER_TYPE':
+      return action.data.userType
+    case 'REMOVE_USER_TYPE':
+      return state === null
     default:
       return state
   }
 }
 
-export const setUserLoggedIn = () => {
+export const setUserType = (userType) => {
   return {
-    type: 'USER_LOGGED_IN',
+    type: 'SET_USER_TYPE',
     data: {
-      logged: true
+      userType: userType
     }
   }
 }
 
-export const setUserLoggedOut = () => {
+export const removeUserType = () => {
   return {
-    type: 'USER_LOGGED_OUT'
+    type: 'REMOVE_USER_TYPE'
   }
 }
 

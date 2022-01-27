@@ -4,15 +4,17 @@ import Stores from './components/stores'
 import Login from './components/customer/login'
 import LinkHeader from './components/linkHeader'
 import SignUp from './components/signUp'
-import Logout from './components/logout'
 import StoreLogin from './components/store/storeLogin'
-import Profile from './components/customer/profile'
-import OwnStore from './components/store/ownStore'
-import AddProduct from './components/store/addProduct'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { setUserLoggedIn } from './redux/reducers/userReducer'
-
+import { setUserType } from './redux/reducers/userReducer'
+import CustomerRouting from './routing/customerRouting'
+import StoreRouting from './routing/storeRouting'
+import {
+  Typography,
+  Container,
+  Box
+} from '@mui/material'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -20,36 +22,59 @@ const App = () => {
   useEffect(() => {
     const token = localStorage.getItem('userToken')
     if (token) {
-      dispatch(setUserLoggedIn())
+      const userType = localStorage.getItem('userType')
+      dispatch(setUserType(userType))
     }
   }, [dispatch])
 
-  const userLoggedIn = useSelector(state => state.user)
+  const userType = useSelector(state => state.user)
 
+  if (userType === 'store') {
+    return (
+      < StoreRouting />
+    )
+  }
+
+  else if (userType === 'customer') {
+    return (
+      < CustomerRouting />
+    )
+  }
+  else {
   return (
     <div style={{ flex: 1 }}>
       <BrowserRouter>
-        <LinkHeader />
-        {userLoggedIn
-          ?
-          <Routes>
-            <Route path='/logout' element={<Logout />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/ownstore' element={<OwnStore />} />
-            <Route path='/addproduct' element={<AddProduct />} />
-            <Route exact path='/' element={<Stores />} />
-          </Routes>
-          :
+        <LinkHeader />     
           <Routes>
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<SignUp />} />
             <Route exact path='/' element={<Stores />} />
-            <Route exact path='/storelogin' element={<StoreLogin />} />
-          </Routes>
-        }
+          <Route exact path='/storelogin' element={<StoreLogin />} />
+          <Route
+            path="*"
+            element={
+              <Container maxWidth='lg'>
+                <Box sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  paddingTop: 20
+                }}>
+                  <Typography
+                    component='h1'
+                    variant='h6'
+                    alignSelf='center'
+                  >
+                    Nothing to see here...
+                  </Typography>
+                </Box>
+              </Container>
+            }
+          />
+        </Routes>
       </BrowserRouter>
     </div>
   )
+}
 }
 
 export default App;

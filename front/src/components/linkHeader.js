@@ -35,29 +35,7 @@ const LinkHeader = () => {
           </Container>
         </AppBar>    
       )
-    } else {
-      // store header
-      return (    
-        <AppBar position='static'>
-          <Container maxWidth='xl'>
-            <Box sx={{
-              display: 'flex',
-              backgroundColor: 'primary.main'
-            }}>
-              <Button variant='outlined'>
-                <Link to='/ownstore' style={{ color: 'white' }}>Store</Link>
-              </Button>
-              <Button variant='outlined'>
-                <Link to='/addproduct' style={{ color: 'white' }}>Add product</Link>
-              </Button>
-              <Button variant='outlined'>
-                <Link to='/logout' style={{ color: 'white' }}>Logout</Link>
-              </Button>
-            </Box>
-          </Container>
-        </AppBar>
-      )
-    }
+    } 
   }
   // header if not signed in
   else {

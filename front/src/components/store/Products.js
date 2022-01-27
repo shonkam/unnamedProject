@@ -1,5 +1,6 @@
 import React from 'react'
 import useGetProducts from '../../hooks/useGetProducts'
+import { useNavigate } from 'react-router-dom'
 import {
   Container,
   Box,
@@ -7,12 +8,12 @@ import {
   ImageList,
   ImageListItem,
   ImageListItemBar,
-  IconButton,
-
+  IconButton
 } from '@mui/material'
 import SettingsIcon from '@mui/icons-material/Settings'
 
-const OwnStore = () => {
+const Products = () => {
+  const navigate = useNavigate()
   const ownProducts = useGetProducts()
   console.log(ownProducts)
 
@@ -20,6 +21,11 @@ const OwnStore = () => {
     return (
       <div>loading...</div>
     )
+  }
+
+  const customizeProduct = (item) => {
+    console.log('pressed', item)
+    navigate(`/products/${item.id}`)
   }
 
   return (
@@ -52,7 +58,7 @@ const OwnStore = () => {
                 title={item.productName}
                 subtitle={item.productDescription}
                 actionIcon={
-                  <IconButton>
+                  <IconButton onClick={() => customizeProduct(item)}>
                     <SettingsIcon sx={{ color: 'white' }} />
                   </IconButton>
                 }
@@ -65,4 +71,4 @@ const OwnStore = () => {
   )
 }
 
-export default OwnStore
+export default Products

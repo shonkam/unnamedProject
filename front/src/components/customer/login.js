@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
 import useLogin from '../../hooks/useLogin'
 import { useDispatch } from 'react-redux'
-import { setUserLoggedIn } from '../../redux/reducers/userReducer'
+import { setUserType } from '../../redux/reducers/userReducer'
 import {
   Button,
   Container,
@@ -59,8 +59,8 @@ const Login = () => {
         console.log('Your token is: ', response)
         await localStorage.setItem('userToken', response)
         await localStorage.setItem('userType', 'customer')
-        navigate('/')
-        await dispatch(setUserLoggedIn())
+        navigate('/') 
+        await dispatch(setUserType('customer'))        
       }
       //todo noti
     } catch (error) {

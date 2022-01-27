@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
 import useStoreLogin from '../../hooks/useStoreLogin'
 import { useDispatch } from 'react-redux'
-import { setUserLoggedIn } from '../../redux/reducers/userReducer'
+import { setUserType } from '../../redux/reducers/userReducer'
 import {
   Button,
   Container,
@@ -60,8 +60,8 @@ const StoreLogin = () => {
         console.log('Your token is: ', response)
         await localStorage.setItem('userToken', response)
         await localStorage.setItem('userType', 'store')
-        navigate('/ownstore')
-        await dispatch(setUserLoggedIn())
+        navigate('/')
+        await dispatch(setUserType('store'))
       }
       //todo noti
     } catch (error) {
@@ -82,7 +82,7 @@ const StoreLogin = () => {
           variant='h5'
           alignSelf='center'
         >
-          Login
+          Store login
         </Typography>
         <Box
           component='form'

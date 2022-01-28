@@ -12,7 +12,12 @@ import {
   resolvers as storeResolvers,
 } from './store.js'
 
+import {
+  typeDefs as ProductTypeDefs,
+  resolvers as productResolvers,
+} from './product.js'
+
 export const schema = makeExecutableSchema({
-  typeDefs: [CustomerTypeDefs, StoreTypeDefs],
-  resolvers: merge(customerResolvers, storeResolvers),
+  typeDefs: [CustomerTypeDefs, StoreTypeDefs, ProductTypeDefs],
+  resolvers: merge(customerResolvers, storeResolvers, productResolvers),
 })

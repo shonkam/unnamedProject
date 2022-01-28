@@ -1,8 +1,8 @@
 import React from 'react'
-import useAddProduct from '../../hooks/useAddProduct'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
+import useUpdateProduct from '../../hooks/useUpdateProduct'
 import {
   Button,
   Container,
@@ -34,35 +34,50 @@ const validationSchema = yup.object().shape({
     .required('Product description is required')
 })
 
-const AddProduct = () => {
-  const [addProduct] = useAddProduct()
+
+const UpdateProductForm = ({ customizedProduct }) => {
+  const [updateProduct] = useUpdateProduct()
   const navigate = useNavigate()
 
   const addProductForm = useFormik({
     initialValues: {
-      productName: '',
-      productPrice: '',
-      productStock: '',
-      productPictureURL: '',
-      productDescription: ''
+      productName: customizedProduct.productName,
+      productPrice: customizedProduct.productPrice,
+      productStock: customizedProduct.productStock,
+      productPictureURL: customizedProduct.productPictureURL,
+      productDescription: customizedProduct.productDescription
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      submitAddProduct(values)
+      submitPpdatedProduct(values)
     }
   })
 
-  const submitAddProduct = async (values) => {
-    console.log('submitProduct', values)
+  const submitPpdatedProduct = async (values) => {
     try {
-      const response = await addProduct(values)
+      const updatedProduct = {
+        id: customizedProduct.id,
+        productName: values.productName,
+        productPrice: values.productPrice,
+        productStock: values.productStock,
+        productPictureURL: values.productPictureURL,
+        productDescription: values.productDescription
+      }
+      const response = await updateProduct(updatedProduct)
+      // const response = await addProduct(values)
       // todo noti
       console.log(response)
-      navigate('/products')
+      if (response) {
+        // todo noti
+        navigate('/products')
+      }
+      else {
+        // todo noti
+        console.log('could not update product')
+      }
     } catch (error) {
-      console.log('an error occurred while addding a product: ', error)
+      console.log('an error occurred while updating a product: ', error)
     }
-
   }
 
   return (
@@ -78,7 +93,7 @@ const AddProduct = () => {
           variant='h5'
           alignSelf='center'
         >
-          Add product
+          Update product
         </Typography>
         <Box
           component='form'
@@ -165,7 +180,18 @@ const AddProduct = () => {
               marginTop: 2
             }}
           >
-            Add product
+            Update product
+          </Button>
+          <Button
+            color='error'
+            variant='contained'
+            fullWidth
+            onClick={() => navigate('/products')}
+            sx={{
+              marginTop: 2
+            }}
+          >
+            Cancel
           </Button>
         </Box>
       </Box>
@@ -173,4 +199,4 @@ const AddProduct = () => {
   )
 }
 
-export default AddProduct
+export default UpdateProductForm

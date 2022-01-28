@@ -10,8 +10,7 @@ const useSignUp = () => {
     const password = values.password
     const userType = values.userType
 
-    if (userType === 'customer') {
-      console.log('customer')
+    if (userType === 'customer') {  
       // mutation returns a boolean
       // about the success of the operation
       const { data } = await mutateCustomer({
@@ -26,7 +25,6 @@ const useSignUp = () => {
       // status is checked
       return data.addCustomer.successful
     } else if (userType === 'store') {
-      console.log('store')
       const name = values.storeName
       const country = values.storeCountry
       const postalNumber = parseInt(values.storePostalNumber)

@@ -1,5 +1,5 @@
 import React from 'react'
-import useGetProducts from '../../hooks/useGetProducts'
+import useGetAllProducts from '../../hooks/useGetAllProducts'
 import { useNavigate } from 'react-router-dom'
 import {
   Container,
@@ -14,15 +14,14 @@ import SettingsIcon from '@mui/icons-material/Settings'
 
 const Products = () => {
   const navigate = useNavigate()
-  const ownProducts = useGetProducts()
-  console.log(ownProducts)
+  const ownProducts = useGetAllProducts()
 
   while (!ownProducts) {
     return (
       <div>loading...</div>
     )
   }
-
+  console.log(ownProducts)
   const customizeProduct = (item) => {
     console.log('pressed', item)
     navigate(`/products/${item.id}`)

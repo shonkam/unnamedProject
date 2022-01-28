@@ -25,11 +25,10 @@ export const typeDefs = gql`
     products: [Product]
   }
 
-
   type Product {
     id: ID!
     productName: String!
-    productPrice: Float!
+    productPrice: String!
     productStock: Int!
     productPictureURL: String!
     productDescription: String!
@@ -50,7 +49,6 @@ export const typeDefs = gql`
 
   type Query {
     allStores(name: String): [Store]
-    allProducts(store: String): [Product]
   }
 
   type Mutation {
@@ -70,14 +68,6 @@ export const typeDefs = gql`
       email: String!
       password: String!
     ): Token
-
-    addProduct(
-      productName: String!
-      productPrice: Float!
-      productStock: Int!
-      productPictureURL: String!
-      productDescription: String!
-    ): RequestSuccessful
   }
 `
 
@@ -99,60 +89,10 @@ export const resolvers = {
 
         return error
       }
-    },
-
-    allProducts: async (root, args) => {
-      try {
-        if (args.store && args.category) {
-
-        }
-        else if (args.store) {
-          const store = await Store.findOne({ name: args.store })
-          return await Product.find({ productStore: store.id }).populate('productStore')
-        }
-        else if (args.category) {
-          return await Product.find({ productCategory: args.category }).populate('productStore')
-        }
-        else {
-          return await Product.find({}).populate('productStore')
-        }
-      } catch (error) {
-        //todo
-        console.log('an error occurred while fetching products: ', error)
-      }
     }
   },
 
-  Mutation: {
-    addProduct: async (root, args, context) => {
-      if (!context.currentStore) {
-        throw new AuthenticationError('not authorized')
-      }
-      try {
-
-        const newProduct = new Product({
-          productName: args.productName,
-          productPrice: args.productPrice,
-          productStock: args.productStock,
-          productDescription: args.productDescription,
-          productPictureURL: args.productPictureURL,
-          productStore: context.currentStore.id
-        })
-        const savedProduct = await newProduct.save()
-
-        const addingStore = await Store.findOne({ id: context.currentStore.id })
-        addingStore.products = addingStore.products.concat(savedProduct)
-        await addingStore.save()
-
-        return { successful: true }
-      }
-      catch (error) {
-        console.log('an error occurred while adding a new product: ', error)
-        return { successful: false }
-      }
-    },
-
-
+  Mutation: { 
     addStore: async (root, args) => {
       try {
         const hashedPassword = await bcrypt.hash(args.password, 10)

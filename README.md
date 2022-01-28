@@ -56,3 +56,4 @@ A view for store to examine currently listed products | 26.01.2022 | 3 | 58|
 |Improved routing and headers
 Improved the structure of frontend
 Multiple smaller improvements| 27.01.2022 | 3 | 61 |
+|A view and functionality for store to fetch and customize a single product | 28.01.2022 | 5 | 66 |

@@ -33,15 +33,15 @@ export const LOGIN_STORE = gql`
 `
 
 export const ADD_PRODUCT = gql`
-  mutation AddProduct($productName: String!, $productPrice: Float!, $productStock: Int!, $productPictureURL: String!, $productDescription: String!) {
+  mutation AddProduct($productName: String!, $productPrice: String!, $productStock: Int!, $productPictureURL: String!, $productDescription: String!) {
     addProduct(productName: $productName, productPrice: $productPrice, productStock: $productStock, productPictureURL: $productPictureURL, productDescription: $productDescription) {
       successful
     }
   }
 `
 
-export const STORE_PRODUCTS = gql`
-  query AllProducts {
+export const GET_ALL_PRODUCTS = gql`
+  query allProducts {
     allProducts {
       id
       productName
@@ -49,6 +49,27 @@ export const STORE_PRODUCTS = gql`
       productStock
       productPictureURL
       productDescription
+    }
+  }
+`
+
+export const GET_SINGLE_PRODUCT = gql`
+  query singleProduct ($productID: ID!) {
+    singleProduct (productID: $productID) {
+      id
+      productName
+      productPrice
+      productStock
+      productPictureURL
+      productDescription
+    }
+  }
+`
+
+export const UPDATE_PRODUCT = gql`
+  mutation updateProduct ($productID: ID!, $productName: String!, $productPrice: String!, $productStock: Int!, $productPictureURL: String!, $productDescription: String!) {
+    updateProduct (productID: $productID, productName: $productName, productPrice: $productPrice, productStock: $productStock, productPictureURL: $productPictureURL, productDescription: $productDescription) {
+      successful
     }
   }
 `

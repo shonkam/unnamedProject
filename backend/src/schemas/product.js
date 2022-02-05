@@ -5,6 +5,7 @@ import Product from '../mongooseModels/productModel.js'
 
 export const typeDefs = gql`
   type Product {
+    id: ID!
     productName: String!
     productPrice: String!
     productStock: Int!
@@ -44,11 +45,16 @@ export const typeDefs = gql`
 
 export const resolvers = {
   Query: {
-    allProducts: async (root, args) => {
+    allProducts: async (root, args, context) => {
       try {
-        if (args.store) {
-          const store = await Store.findOne({ name: args.store })
-          return await Product.find({ productStore: store.id }).populate('productStore')
+        if (context.currentStore) {
+          //const hue = Store.findById(context.currentStore.id).populate('products')
+          //console.log(hue)
+          const storeWithProducts = await Store.findById(context.currentStore._id).populate('products')
+          const allProducts = storeWithProducts.products
+          console.log('jvilkdsjvdskljkvdsljvdlskjlvds', allProducts)
+
+          return await Product.find({ productStore: context.currentStore.id })
         }
         else {
           return await Product.find({}).populate('productStore')
@@ -59,10 +65,8 @@ export const resolvers = {
       }
     },
     singleProduct: async (root, args, context) => {
-      console.log(args.productID)
       try {
         return await Product.findOne({ _id: args.productID })
-
       } catch (error) {
         //todo
         console.log('an error occurred while fetching a single product: ', error)
@@ -87,7 +91,7 @@ export const resolvers = {
         })
         const savedProduct = await newProduct.save()
 
-        const addingStore = await Store.findOne({ id: context.currentStore.id })
+        const addingStore = await Store.findOne({ _id: context.currentStore.id })
         addingStore.products = addingStore.products.concat(savedProduct)
         await addingStore.save()
 
@@ -99,18 +103,8 @@ export const resolvers = {
       }
     },
     updateProduct: async (root, args, context) => {
-      console.log('update')
       try {
-        console.log('update')
         // todo validate store
-        /*
-        let product = await Product.findOne({ _id: args.productID })
-
-        
-
-        await product.save()
-*/
-
         await Product.findOneAndUpdate(
           { '_id': args.productID },
           {

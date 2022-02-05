@@ -47,7 +47,7 @@ const Products = () => {
           sx={{ overflow: 'hidden' }}
         >
           {ownProducts.allProducts.map((item) => (
-            <ImageListItem key={item.productName}>
+            <ImageListItem key={item.id}>
               <img
                 src={`${item.productPictureURL}`}
                 alt={item.productName}

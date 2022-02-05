@@ -57,3 +57,6 @@ A view for store to examine currently listed products | 26.01.2022 | 3 | 58|
 Improved the structure of frontend
 Multiple smaller improvements| 27.01.2022 | 3 | 61 |
 |A view and functionality for store to fetch and customize a single product | 28.01.2022 | 5 | 66 |
+| Added dotenv example
+When store request all products, the backend returns only the store's own products
+Bug fixes | 05.02.2022 | 2 | 63 |

@@ -1,11 +1,9 @@
 import { GET_ALL_PRODUCTS } from '../graphql/queries'
 import { useQuery } from '@apollo/client'
 
-const useGetAllProducts = (id) => {
-  const productID = id ? id : null
-  const { data, loading, error } = useQuery(GET_ALL_PRODUCTS, {
-    variables: { productID }
-  })
+const useGetAllProducts = () => {
+
+  const { data, loading, error } = useQuery(GET_ALL_PRODUCTS)
 
   while (loading) {
     return null

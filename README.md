@@ -60,3 +60,5 @@ Multiple smaller improvements| 27.01.2022 | 3 | 61 |
 | Added dotenv example
 When store request all products, the backend returns only the store's own products
 Bug fixes | 05.02.2022 | 2 | 63 |
+Functionality for the store to delete products
+Refetch queries | 07.02.2022 | 2 | 65 |

@@ -3,6 +3,11 @@ import { useApolloClient } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { removeUserType } from '../redux/reducers/userReducer'
+import {
+  Container,
+  Box,
+  Typography
+} from '@mui/material'
 
 const Logout = () => {
   const navigate = useNavigate()
@@ -10,21 +15,32 @@ const Logout = () => {
   const client = useApolloClient()
 
   useEffect(() => {
-  const executeLogout = async () => {
-    console.log('logout')
-    await localStorage.clear()
-    await client.resetStore();
-    navigate('/')
-    await dispatch(removeUserType())
-  }
-  executeLogout()
-})
-
+    const executeLogout = async () => {
+      console.log('logout')
+      await localStorage.clear()
+      await client.resetStore();
+      navigate('/')
+      await dispatch(removeUserType())
+    }
+    executeLogout()
+  })
 
   return (
-    <div>
-      logging out...
-    </div>
+    <Container maxWidth='lg'>
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        paddingTop: 20
+      }}>
+        <Typography
+          component='h1'
+          variant='h6'
+          alignSelf='center'
+        >
+          Loading results...
+        </Typography>
+      </Box>
+    </Container>
   )
 }
 

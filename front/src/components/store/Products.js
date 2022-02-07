@@ -18,12 +18,25 @@ const Products = () => {
 
   while (!ownProducts) {
     return (
-      <div>loading...</div>
+      <Container maxWidth='lg'>
+        <Box sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          paddingTop: 20
+        }}>
+          <Typography
+            component='h1'
+            variant='h6'
+            alignSelf='center'
+          >
+            Loading results...
+          </Typography>
+        </Box>
+      </Container>
     )
   }
-  console.log(ownProducts)
+
   const customizeProduct = (item) => {
-    console.log('pressed', item)
     navigate(`/products/${item.id}`)
   }
 
@@ -31,7 +44,8 @@ const Products = () => {
     <Container maxWidth='lg'>
       <Box sx={{
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        paddingTop: 2
       }}>
         <Typography
           component='h1'

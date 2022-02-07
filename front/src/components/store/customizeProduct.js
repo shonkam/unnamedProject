@@ -6,10 +6,8 @@ import UpdateProductForm from './updateProductForm'
 const CustomizeProduct = () => {
 
   const { id } = useParams()
-  console.log(id)
-
   const customizedProduct = useGetSingleProduct(id)
-  console.log(customizedProduct)
+
   while (!customizedProduct) {
     return (
       <div>loading...</div>
@@ -18,8 +16,6 @@ const CustomizeProduct = () => {
   return (
     < UpdateProductForm customizedProduct={customizedProduct} />
   )
-
-
 }
 
 export default CustomizeProduct

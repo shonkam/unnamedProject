@@ -27,7 +27,12 @@ const setHTTPLink = new HttpLink({
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: setAuthorizationLink.concat(setHTTPLink)
+  link: setAuthorizationLink.concat(setHTTPLink),
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'cache-and-network',
+    }
+  }
 })
 
 ReactDOM.render(

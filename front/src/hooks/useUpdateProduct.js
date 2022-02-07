@@ -1,4 +1,4 @@
-import { UPDATE_PRODUCT } from '../graphql/queries'
+import { UPDATE_PRODUCT, GET_ALL_PRODUCTS } from '../graphql/queries'
 import { useMutation } from '@apollo/client'
 
 const useUpdateProduct = () => {
@@ -19,7 +19,8 @@ const useUpdateProduct = () => {
         productStock: productStock,
         productPictureURL: updatedProduct.productPictureURL,
         productDescription: updatedProduct.productDescription
-      }
+      },
+      refetchQueries: [{ query: GET_ALL_PRODUCTS }]
     })
 
     if (error) {

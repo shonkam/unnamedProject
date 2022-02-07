@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import useUpdateProduct from '../../hooks/useUpdateProduct'
+import useDeleteProduct from '../../hooks/useDeleteProduct'
 import {
   Button,
   Container,
@@ -37,6 +38,7 @@ const validationSchema = yup.object().shape({
 
 const UpdateProductForm = ({ customizedProduct }) => {
   const [updateProduct] = useUpdateProduct()
+  const [deleteProduct] = useDeleteProduct()
   const navigate = useNavigate()
 
   const addProductForm = useFormik({
@@ -49,11 +51,11 @@ const UpdateProductForm = ({ customizedProduct }) => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      submitPpdatedProduct(values)
+      submitUpdatedProduct(values)
     }
   })
 
-  const submitPpdatedProduct = async (values) => {
+  const submitUpdatedProduct = async (values) => {
     try {
       const updatedProduct = {
         id: customizedProduct.id,
@@ -77,6 +79,20 @@ const UpdateProductForm = ({ customizedProduct }) => {
       }
     } catch (error) {
       console.log('an error occurred while updating a product: ', error)
+    }
+  }
+
+  const submitDeleteProduct = async () => {
+    if (window.confirm('Are you sure you want to delete this product?')) {
+      const response = await deleteProduct(customizedProduct.id)
+      if (response) {
+        // todo noti
+        navigate('/products')
+      }
+    }
+    else {
+      // todo noti
+      console.log('could not remove product')
     }
   }
 
@@ -192,6 +208,17 @@ const UpdateProductForm = ({ customizedProduct }) => {
             }}
           >
             Cancel
+          </Button>
+          <Button
+            color='error'
+            variant='contained'
+            fullWidth
+            onClick={submitDeleteProduct}
+            sx={{
+              marginTop: 6
+            }}
+          >
+            Delete product
           </Button>
         </Box>
       </Box>

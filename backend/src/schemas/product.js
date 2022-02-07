@@ -5,7 +5,7 @@ import Product from '../mongooseModels/productModel.js'
 
 export const typeDefs = gql`
   type Product {
-    id: ID!
+    _id: ID!
     productName: String!
     productPrice: String!
     productStock: Int!
@@ -40,6 +40,10 @@ export const typeDefs = gql`
       productPictureURL: String!
       productDescription: String!
     ): RequestSuccessful
+
+    deleteProduct(
+      productID: ID!
+    ): RequestSuccessful
   }
 `
 
@@ -50,9 +54,9 @@ export const resolvers = {
         if (context.currentStore) {
           //const hue = Store.findById(context.currentStore.id).populate('products')
           //console.log(hue)
-          const storeWithProducts = await Store.findById(context.currentStore._id).populate('products')
-          const allProducts = storeWithProducts.products
-          console.log('jvilkdsjvdskljkvdsljvdlskjlvds', allProducts)
+          //const storeWithProducts = await Store.findById(context.currentStore._id).populate('products')
+          //const allProducts = storeWithProducts.products
+          //console.log('jvilkdsjvdskljkvdsljvdlskjlvds', allProducts)
 
           return await Product.find({ productStore: context.currentStore.id })
         }
@@ -117,6 +121,26 @@ export const resolvers = {
         return { successful: true }
       } catch (error) {
         console.log('an error occurred while adding a new product: ', error)
+        return { successful: false }
+      }
+    },
+    deleteProduct: async (root, args, context) => {
+      try {
+        if (!context.currentStore) {
+          throw new AuthenticationError('not authorized')
+        }
+        const product = await Product.findById(args.productID)
+        const reqStoreID = context.currentStore._id.toString()
+        const productStoreID = product.productStore._id.toString()
+
+        if (reqStoreID !== productStoreID) {
+          throw new AuthenticationError('not authorized')
+        } else {
+          await Product.findByIdAndDelete(args.productID)
+          return { successful: true }
+        }
+      } catch (error) {
+        console.log('an error occurred while deleting a product: ', error)
         return { successful: false }
       }
     }

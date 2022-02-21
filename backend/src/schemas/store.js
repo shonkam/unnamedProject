@@ -2,7 +2,6 @@ import dotenv from 'dotenv'
 import { gql } from 'apollo-server'
 import { UserInputError, AuthenticationError } from 'apollo-server'
 import Store from '../mongooseModels/storeModel.js'
-import Product from '../mongooseModels/productModel.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
@@ -19,8 +18,11 @@ export const typeDefs = gql`
   }
 
   type Store {
+    id: ID!
     email: String!
     name: String!
+    description: String!
+    backgroundPictureURL: String!
     location: Location!
     products: [Product]
   }
@@ -48,14 +50,16 @@ export const typeDefs = gql`
   }
 
   type Query {
-    allStores(name: String): [Store]
+    allStores: [Store]
   }
 
   type Mutation {
     addStore(
       email: String!
       password: String!
-      name: String!   
+      name: String!
+      description: String!
+      backgroundPictureURL: String!  
       address: String!
       city: String!
       postalNumber: Int!
@@ -73,12 +77,11 @@ export const typeDefs = gql`
 
 export const resolvers = {
   Query: {
-    allStores: async (root, args) => {
+    allStores: async (root, args, context) => {
       try {
-        if (args.name) {
-          const response = await Store.findOne({ name: args.name })
-          //todo better
-          return [response]
+        if (context.currentStore) {
+          console.log(context.currentStore._id)
+          return await [Store.findById(context.currentStore._id)]
         }
         else {
           return await Store.find({})
@@ -100,6 +103,8 @@ export const resolvers = {
           email: args.email,
           password: hashedPassword,
           name: args.name,
+          description: args.description,
+          backgroundPictureURL: args.backgroundPictureURL,
           location: {
             address: args.address,
             city: args.city,
@@ -107,7 +112,6 @@ export const resolvers = {
             country: args.country
           }
         })
-
         await newStore.save()
         return { successful: true }
       } catch (error) {
@@ -138,7 +142,6 @@ export const resolvers = {
         const store = await Store.findOne({ email: args.email })
 
         if (!store) {
-          console.log('eka')
           throw new UserInputError('Check credentials')
         }
 

@@ -26,6 +26,17 @@ const storeSchema = new mongoose.Schema({
     required: true
   },
 
+  description: {
+    type: String,
+    required: true
+  },
+
+  backgroundPictureURL: {
+    type: String,
+    trim: true,
+    required: true
+  },
+
   location: locationSchema,
 
   products: {

@@ -20,7 +20,8 @@ const productSchema = new mongoose.Schema({
 
   productPictureURL: {
     type: String,
-    trim: true
+    trim: true,
+    required: true
   },
 
   productDescription: {

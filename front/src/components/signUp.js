@@ -30,6 +30,9 @@ const validationSchema = yup.object().shape({
   storeName: yup
     .string('Enter the name of the store')
     .min(2, 'The name of the store should be atleast 2 characters long'),
+  storeDescription: yup
+    .string('Enter a short description of you store')
+    .max(60, 'The description must be under 60 characters long'),
   storePostalNumber: yup
     .number('Enter the postal number of your store')
     .positive('Postal number can not be negative')
@@ -48,6 +51,8 @@ const SignUp = () => {
       passwordConfirmation: '',
       userType: 'customer',
       storeName: '',
+      storeDescription: '',
+      storeBackgroundPictureURL: '',
       storeCountry: '',
       storePostalNumber: '',
       storeAddress: '',
@@ -95,7 +100,8 @@ const SignUp = () => {
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: 15
+        paddingTop: 15,
+        paddingBottom: 5
       }}>
         <Typography
           component='h1'
@@ -196,6 +202,31 @@ const SignUp = () => {
                 onChange={signUpForm.handleChange}
                 error={signUpForm.touched.storeName && Boolean(signUpForm.errors.storeName)}
                 helperText={signUpForm.touched.storeName && signUpForm.errors.storeName}
+              />
+              <TextField
+                margin='normal'
+                fullWidth
+                id='storeDescription'
+                name='storeDescription'
+                label='Short description of the store (max 60 characters)'
+                required={true}
+                value={signUpForm.values.storeDescription}
+                onChange={signUpForm.handleChange}
+                error={signUpForm.touched.storeDescription && Boolean(signUpForm.errors.storeDescription)}
+                helperText={signUpForm.touched.storeDescription && signUpForm.errors.storeDescription}
+              />
+
+              <TextField
+                margin='normal'
+                fullWidth
+                id='storeBackgroundPictureURL'
+                name='storeBackgroundPictureURL'
+                label='Background picture URL'
+                required={true}
+                value={signUpForm.values.storeBackgroundPictureURL}
+                onChange={signUpForm.handleChange}
+                error={signUpForm.touched.storeBackgroundPictureURL && Boolean(signUpForm.errors.storeBackgroundPictureURL)}
+                helperText={signUpForm.touched.storeBackgroundPictureURL && signUpForm.errors.storeBackgroundPictureURL}
               />
               <TextField
                 margin='normal'

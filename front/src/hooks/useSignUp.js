@@ -26,6 +26,8 @@ const useSignUp = () => {
       return data.addCustomer.successful
     } else if (userType === 'store') {
       const name = values.storeName
+      const description = values.storeDescription
+      const backgroundPictureURL = values.storeBackgroundPictureURL
       const country = values.storeCountry
       const postalNumber = parseInt(values.storePostalNumber)
       const address = values.storeAddress
@@ -36,6 +38,8 @@ const useSignUp = () => {
           email,
           password,
           name,
+          description,
+          backgroundPictureURL,
           country,
           postalNumber,
           address,
@@ -43,7 +47,6 @@ const useSignUp = () => {
         }
       })
 
-      console.log(data)
       return data.addStore.successful
     } else {
       console.log('something went really wrong')

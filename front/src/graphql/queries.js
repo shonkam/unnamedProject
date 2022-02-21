@@ -17,9 +17,26 @@ export const LOGIN_CUSTOMER = gql`
 `
 
 export const ADD_STORE = gql`
-  mutation AddStore($email: String!, $password: String!, $name: String!, $address: String!, $city: String!, $postalNumber: Int!, $country: String!) {
-    addStore(email: $email, password: $password, name: $name, address: $address, city: $city, postalNumber: $postalNumber, country: $country) {
+  mutation AddStore($email: String!, $password: String!, $name: String!, $description: String!, $backgroundPictureURL: String!, $address: String!, $city: String!, $postalNumber: Int!, $country: String!) {
+    addStore(email: $email, password: $password, name: $name, description: $description, backgroundPictureURL: $backgroundPictureURL, address: $address, city: $city, postalNumber: $postalNumber, country: $country) {
       successful
+    }
+  }
+`
+
+export const GET_STORES = gql`
+  query allStores {
+    allStores {
+      id
+      name
+      description
+      backgroundPictureURL
+      location {
+        address
+        city
+        postalNumber
+        country
+      }
     }
   }
 `

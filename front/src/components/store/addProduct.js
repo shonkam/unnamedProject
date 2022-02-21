@@ -53,16 +53,17 @@ const AddProduct = () => {
   })
 
   const submitAddProduct = async (values) => {
-    console.log('submitProduct', values)
     try {
       const response = await addProduct(values)
-      // todo noti
-      console.log(response)
-      navigate('/products')
+      if (response) {
+        // todo noti
+        navigate('/products')
+      } else {
+        // todo noti
+      }
     } catch (error) {
       console.log('an error occurred while addding a product: ', error)
     }
-
   }
 
   return (
@@ -84,7 +85,6 @@ const AddProduct = () => {
           component='form'
           onSubmit={addProductForm.handleSubmit}
         >
-
           <Typography
             sx={{ paddingTop: 3 }}
             variant='subtitle1'
@@ -104,6 +104,30 @@ const AddProduct = () => {
             onChange={addProductForm.handleChange}
             error={addProductForm.touched.productName && Boolean(addProductForm.errors.productName)}
             helperText={addProductForm.touched.productName && addProductForm.errors.productName}
+          />
+          <TextField
+            margin='normal'
+            fullWidth
+            id='productDescription'
+            name='productDescription'
+            label='Description'
+            onSubmit={addProductForm.handleSubmit}
+            value={addProductForm.values.productDescription}
+            onChange={addProductForm.handleChange}
+            error={addProductForm.touched.productDescription && Boolean(addProductForm.errors.productDescription)}
+            helperText={addProductForm.touched.productDescription && addProductForm.errors.productDescription}
+          />
+          <TextField
+            margin='normal'
+            fullWidth
+            id='productPictureURL'
+            name='productPictureURL'
+            label='Picture URL'
+            onSubmit={addProductForm.handleSubmit}
+            value={addProductForm.values.productPictureURL}
+            onChange={addProductForm.handleChange}
+            error={addProductForm.touched.productPictureURL && Boolean(addProductForm.errors.productPictureURL)}
+            helperText={addProductForm.touched.productPictureURL && addProductForm.errors.productPictureURL}
           />
           <TextField
             margin='normal'
@@ -128,32 +152,6 @@ const AddProduct = () => {
             onChange={addProductForm.handleChange}
             error={addProductForm.touched.productStock && Boolean(addProductForm.errors.productStock)}
             helperText={addProductForm.touched.productStock && addProductForm.errors.productStock}
-          />
-
-          <TextField
-            margin='normal'
-            fullWidth
-            id='productPictureURL'
-            name='productPictureURL'
-            label='Picture URL'
-            onSubmit={addProductForm.handleSubmit}
-            value={addProductForm.values.productPictureURL}
-            onChange={addProductForm.handleChange}
-            error={addProductForm.touched.productPictureURL && Boolean(addProductForm.errors.productPictureURL)}
-            helperText={addProductForm.touched.productPictureURL && addProductForm.errors.productPictureURL}
-          />
-
-          <TextField
-            margin='normal'
-            fullWidth
-            id='productDescription'
-            name='productDescription'
-            label='Description'
-            onSubmit={addProductForm.handleSubmit}
-            value={addProductForm.values.productDescription}
-            onChange={addProductForm.handleChange}
-            error={addProductForm.touched.productDescription && Boolean(addProductForm.errors.productDescription)}
-            helperText={addProductForm.touched.productDescription && addProductForm.errors.productDescription}
           />
 
           <Button

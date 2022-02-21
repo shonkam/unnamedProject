@@ -62,3 +62,5 @@ When store request all products, the backend returns only the store's own produc
 Bug fixes | 05.02.2022 | 2 | 63 |
 Functionality for the store to delete products
 Refetch queries | 07.02.2022 | 2 | 65 |
+|Ability to set background picture URL and a short description for your store
+Store profile view | 21.02.2022 | 3 | 68 |

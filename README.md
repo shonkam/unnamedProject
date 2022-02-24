@@ -64,3 +64,5 @@ Functionality for the store to delete products
 Refetch queries | 07.02.2022 | 2 | 65 |
 |Ability to set background picture URL and a short description for your store
 Store profile view | 21.02.2022 | 3 | 68 |
+|View for all stores
+Ability to check the products of the selected store | 24.02.2022 | 3 | 71 |

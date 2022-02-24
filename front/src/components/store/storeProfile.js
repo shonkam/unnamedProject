@@ -10,7 +10,8 @@ import {
 } from '@mui/material'
 
 const StoreProfile = () => {
-  const ownStore = useGetStores()
+  const singleStore = true
+  const ownStore = useGetStores(singleStore)
   console.log(ownStore)
 
   while (!ownStore) {
@@ -50,7 +51,7 @@ const StoreProfile = () => {
         <Card sx={{ paddingTop: 2 }}>
           <CardMedia
             component="img"
-            image="https://i.ibb.co/CQ4bBs3/pexels-arina-krasnikova-5709743.jpg"
+            image={`${ownStore.backgroundPictureURL}`}
             alt="profile"
             sx={{ maxHeight: 500 }}
           />

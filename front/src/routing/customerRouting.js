@@ -4,6 +4,7 @@ import CustomerLinkHeader from '../components/customer/customerLinkHeader'
 import Logout from '../components/logout'
 import Home from '../components/customer/home'
 import Profile from '../components/customer/profile'
+import CustomerAllProducts from '../components/customer/CustomerAllProducts'
 import {
   Typography,
   Container,
@@ -18,6 +19,7 @@ const CustomerRouting = () => {
 
         <Route exact path='/' element={<Home />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/:storeID' element={<CustomerAllProducts />} />
         <Route path='/logout' element={<Logout />} />
 
         <Route

@@ -58,8 +58,8 @@ export const ADD_PRODUCT = gql`
 `
 
 export const GET_ALL_PRODUCTS = gql`
-  query allProducts {
-    allProducts {
+  query allProducts($storeID: ID) {
+    allProducts(storeID: $storeID) {
       id
       productName
       productPrice

@@ -80,7 +80,6 @@ export const resolvers = {
     allStores: async (root, args, context) => {
       try {
         if (context.currentStore) {
-          console.log(context.currentStore._id)
           return await [Store.findById(context.currentStore._id)]
         }
         else {

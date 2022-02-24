@@ -19,7 +19,7 @@ export const typeDefs = gql`
   }
 
   type Query {
-    allProducts: [Product]
+    allProducts(storeID: ID): [Product]
     singleProduct(productID: ID!): Product
   }
 
@@ -51,15 +51,16 @@ export const resolvers = {
   Query: {
     allProducts: async (root, args, context) => {
       try {
+        // for store's own products
         if (context.currentStore) {
-          //const hue = Store.findById(context.currentStore.id).populate('products')
-          //console.log(hue)
-          //const storeWithProducts = await Store.findById(context.currentStore._id).populate('products')
-          //const allProducts = storeWithProducts.products
-          //console.log('jvilkdsjvdskljkvdsljvdlskjlvds', allProducts)
-
           return await Product.find({ productStore: context.currentStore.id })
         }
+        // for viewing all the products of a single store
+        else if (args.storeID) {
+          // todo error handling for not valid store id
+          return await Product.find({ productStore: args.storeID })
+        }
+        // all products
         else {
           return await Product.find({}).populate('productStore')
         }

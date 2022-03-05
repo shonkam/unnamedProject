@@ -43,12 +43,13 @@ const Home = () => {
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
+        marginTop: 3
       }}>
         {allStores.map((store) => (
           <CardActionArea
             key={store.id}
             onClick={() => viewProducts(store)}
-            sx={{ marginTop: 3 }}>
+          >
             <CardMedia
               component="img"
               image={`${store.backgroundPictureURL}`}
@@ -56,19 +57,15 @@ const Home = () => {
               sx={{ maxHeight: 500 }}
             />
             <CardContent>
-              <Typography variant="h5" component="div">
+              <Typography variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
                 {store.name}
               </Typography>
               <Typography variant="h6" component="div">
                 {store.description}
               </Typography>
-
             </CardContent>
-
-
           </CardActionArea>
         ))}
-
       </Box>
     </Container>
   )

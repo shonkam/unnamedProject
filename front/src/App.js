@@ -29,6 +29,7 @@ const App = () => {
 
   const userType = useSelector(state => state.user)
 
+
   if (userType === 'store') {
     return (
       < StoreRouting />
@@ -41,40 +42,40 @@ const App = () => {
     )
   }
   else {
-  return (
-    <div style={{ flex: 1 }}>
-      <BrowserRouter>
-        <LinkHeader />     
+    return (
+      <div style={{ flex: 1 }}>
+        <BrowserRouter>
+          <LinkHeader />
           <Routes>
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<SignUp />} />
             <Route exact path='/' element={<Stores />} />
-          <Route exact path='/storelogin' element={<StoreLogin />} />
-          <Route
-            path="*"
-            element={
-              <Container maxWidth='lg'>
-                <Box sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  paddingTop: 20
-                }}>
-                  <Typography
-                    component='h1'
-                    variant='h6'
-                    alignSelf='center'
-                  >
-                    Nothing to see here...
-                  </Typography>
-                </Box>
-              </Container>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-    </div>
-  )
-}
+            <Route exact path='/storelogin' element={<StoreLogin />} />
+            <Route
+              path="*"
+              element={
+                <Container maxWidth='lg'>
+                  <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    paddingTop: 20
+                  }}>
+                    <Typography
+                      component='h1'
+                      variant='h6'
+                      alignSelf='center'
+                    >
+                      Nothing to see here...
+                    </Typography>
+                  </Box>
+                </Container>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    )
+  }
 }
 
 export default App;

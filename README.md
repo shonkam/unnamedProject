@@ -66,3 +66,4 @@ Refetch queries | 07.02.2022 | 2 | 65 |
 Store profile view | 21.02.2022 | 3 | 68 |
 |View for all stores
 Ability to check the products of the selected store | 24.02.2022 | 3 | 71 |
+|Designing the UI, initial implementation of the single product view|5.3.2022|3|74|

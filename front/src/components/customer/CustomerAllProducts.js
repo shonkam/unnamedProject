@@ -1,94 +1,77 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import useGetAllProducts from '../../hooks/useGetAllProducts'
-import { useNavigate } from 'react-router-dom'
+import LoadingScreen from '../LoadingScreen'
 import {
   Container,
   Box,
   Typography,
-  ImageList,
-  CardActionArea,
   CardMedia,
-  CardContent
+  Button
 } from '@mui/material'
 
 const CustomerAllProducts = () => {
-  const navigate = useNavigate()
   const { storeID } = useParams()
   const storeProducts = useGetAllProducts(storeID)
 
-  const viewProduct = (product) => {
-    navigate(`${product.id}`)
-  }
-
   while (!storeProducts) {
     return (
-      <Container maxWidth='lg'>
-        <Box sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          paddingTop: 20
-        }}>
-          <Typography
-            component='h1'
-            variant='h6'
-            alignSelf='center'
-          >
-            Loading results...
-          </Typography>
-        </Box>
-      </Container>
+      <LoadingScreen />
     )
   }
 
-
   return (
-    <Container maxWidth='lg'>
-      <Box sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        marginTop: 1
-      }}>
-        <ImageList
-          cols={2}
-          gap={50}
-          sx={{ overflow: 'hidden' }}
-        >
-          {storeProducts.map((product) => (
-            <CardActionArea
-              key={product.id}
-              onClick={() => viewProduct(product)}
-            >
-              <CardMedia
-                component="img"
-                image={`${product.productPictureURL}`}
-                alt="product"
-                sx={{ maxHeight: 700 }}
-              />
-              <CardContent
-                sx={{ backgroundColor: "Snow" }}
-              >
-                <div style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: 'space-between',
-                  marginBottom: 10
-                }} >
-                  <Typography variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
-                    {product.productName}
-                  </Typography>
-                  <Typography variant="h5" component="div">
-                    {product.productPrice}
-                  </Typography>
-                </div>
-                <Typography variant="h6" component="div">
-                  {product.productDescription}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          ))}
-        </ImageList>
-      </Box>
+    <Container maxWidth='md'>
+      {storeProducts.map((product) => (
+        <Box
+          key={product.id}
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            marginTop: 3,
+            borderRadius: 1,
+            borderColor: '#e5e1e1',
+            border: 'solid'
+          }}>
+          <Box>
+            <CardMedia
+              component="img"
+              image={`${product.productPictureURL}`}
+              alt="product"
+              sx={{ height: 600, width: 450 }}
+            />
+          </Box>
+          <Box sx={{ marginLeft: 2, marginRight: 2, display: 'flex', flexDirection: 'column', alignSelf: 'center', flex: 1 }}>
+            <Typography variant="h4" component="div" sx={{ fontWeight: 'bold' }} >
+              {product.productName}
+            </Typography>
+            <Typography variant="h5" component="div" sx={{ marginTop: 3 }}>
+              {product.productDescription}
+            </Typography>
+            <Typography variant="h5" component="div" sx={{ marginTop: 1 }} >
+              {product.productPrice} €
+            </Typography>
+            <Typography variant="h5" component="div" sx={{ marginTop: 1 }}>
+              {product.productStock} item in stock
+            </Typography>
+            <Button
+
+              variant='contained'
+              fullWidth
+              onClick={() => console.log('pressed')}
+              sx={{
+                marginTop: 2,
+                flex: 1,
+                backgroundColor: '#b2afaf',
+                ':hover': {
+                  bgcolor: '#7f7d7d'
+                }
+              }}>
+              Add to cart
+            </Button>
+          </Box>
+        </Box>
+      ))}
     </Container >
   )
 }

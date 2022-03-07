@@ -5,8 +5,10 @@ import {
   AppBar,
   Button,
   Container,
-  Box
+  Box,
+  IconButton
 } from '@mui/material'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 
 const LinkHeader = () => {
   const userLoggedIn = useSelector(state => state.user)
@@ -33,9 +35,9 @@ const LinkHeader = () => {
               </Button>
             </Box>
           </Container>
-        </AppBar>    
+        </AppBar>
       )
-    } 
+    }
   }
   // header if not signed in
   else {

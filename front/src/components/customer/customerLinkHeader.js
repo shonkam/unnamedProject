@@ -4,31 +4,51 @@ import {
   AppBar,
   Button,
   Container,
-  Box
+  Box,
+  Typography
 } from '@mui/material'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import StorefrontIcon from '@mui/icons-material/Storefront'
+import LogoutIcon from '@mui/icons-material/Logout'
+import PersonIcon from '@mui/icons-material/Person'
 
 const CustomerLinkHeader = () => {
-
   return (
-    <AppBar position='static'>
-      <Container maxWidth='xl'>
+    <Container maxWidth='md'>
+      <Box>
+        <Typography variant="h2" sx={{ display: 'flex', marginBottom: 1, justifyContent: 'center', fontFamily: 'Roboto' }} >
+          Small Shops
+        </Typography>
+      </Box>
+      <AppBar position='static'>
         <Box sx={{
           display: 'flex',
-          backgroundColor: 'primary.main'
+          backgroundColor: '#b2afaf',
+          justifyContent: 'space-evenly'
         }}>
-          <Button variant='outlined'>
-            <Link to='/' style={{ color: 'white' }}>Stores</Link>
+          <Button startIcon={<StorefrontIcon />} style={styles.link}>
+            <Link to='/' style={styles.link}>Stores</Link>
           </Button>
-          <Button variant='outlined'>
-            <Link to='/profile' style={{ color: 'white' }}>Profile</Link>
+          <Button startIcon={<PersonIcon />} style={styles.link}>
+            <Link to='/profile' style={styles.link}>Profile</Link>
           </Button>
-          <Button variant='outlined'>
-            <Link to='/logout' style={{ color: 'white' }}>Logout</Link>
+          <Button startIcon={<ShoppingCartIcon />} style={styles.link} onClick={() => console.log('cart')} >
+            <Link style={styles.link} to=''>Cart</Link>
+          </Button>
+          <Button startIcon={<LogoutIcon />} style={styles.link}>
+            <Link to='/logout' style={styles.link}>Logout</Link>
           </Button>
         </Box>
-      </Container>
-    </AppBar>
+      </AppBar>
+    </Container>
   )
+}
+
+const styles = {
+  link: {
+    color: 'white',
+    textDecoration: "none"
+  }
 }
 
 export default CustomerLinkHeader

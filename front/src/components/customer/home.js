@@ -1,5 +1,6 @@
 import React from 'react'
 import useGetAllStores from '../../hooks/useGetStores'
+import LoadingScreen from '../LoadingScreen'
 import { useNavigate } from 'react-router-dom'
 import {
   Container,
@@ -16,21 +17,7 @@ const Home = () => {
 
   while (!allStores) {
     return (
-      <Container maxWidth='lg'>
-        <Box sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          paddingTop: 20
-        }}>
-          <Typography
-            component='h1'
-            variant='h6'
-            alignSelf='center'
-          >
-            Loading results...
-          </Typography>
-        </Box>
-      </Container>
+      <LoadingScreen />
     )
   }
 
@@ -39,7 +26,7 @@ const Home = () => {
   }
 
   return (
-    <Container maxWidth='lg'>
+    <Container maxWidth='md'>
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',

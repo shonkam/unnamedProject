@@ -22,7 +22,7 @@ const Home = () => {
   }
 
   const viewProducts = (store) => {
-    navigate(`${store.id}`)
+    navigate(`store/${store.id}`)
   }
 
   return (

@@ -1,5 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addProductToCart } from '../../redux/reducers/shoppingCartReducer'
 import useGetAllProducts from '../../hooks/useGetAllProducts'
 import LoadingScreen from '../LoadingScreen'
 import {
@@ -11,9 +13,13 @@ import {
 } from '@mui/material'
 
 const CustomerAllProducts = () => {
+  const dispatch = useDispatch()
   const { storeID } = useParams()
   const storeProducts = useGetAllProducts(storeID)
 
+  const addToCart = async (product) => {
+    dispatch(addProductToCart(product))
+  }
   while (!storeProducts) {
     return (
       <LoadingScreen />
@@ -29,6 +35,7 @@ const CustomerAllProducts = () => {
             display: 'flex',
             flexDirection: 'row',
             marginTop: 3,
+            marginBottom: 3,
             borderRadius: 1,
             borderColor: '#e5e1e1',
             border: 'solid'
@@ -41,7 +48,7 @@ const CustomerAllProducts = () => {
               sx={{ height: 600, width: 450 }}
             />
           </Box>
-          <Box sx={{ marginLeft: 2, marginRight: 2, display: 'flex', flexDirection: 'column', alignSelf: 'center', flex: 1 }}>
+          <Box sx={{ marginLeft: 2, marginRight: 2, display: 'flex', flexDirection: 'column', alignSelf: 'center' }}>
             <Typography variant="h4" component="div" sx={{ fontWeight: 'bold' }} >
               {product.productName}
             </Typography>
@@ -55,10 +62,9 @@ const CustomerAllProducts = () => {
               {product.productStock} item in stock
             </Typography>
             <Button
-
               variant='contained'
               fullWidth
-              onClick={() => console.log('pressed')}
+              onClick={() => addToCart(product)}
               sx={{
                 marginTop: 2,
                 flex: 1,
@@ -72,6 +78,7 @@ const CustomerAllProducts = () => {
           </Box>
         </Box>
       ))}
+      <Box sx={{ display: 'flex', flex: 1, marginBottom: 39 }} />
     </Container >
   )
 }

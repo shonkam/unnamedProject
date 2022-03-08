@@ -5,6 +5,7 @@ import Logout from '../components/logout'
 import Home from '../components/customer/home'
 import Profile from '../components/customer/profile'
 import CustomerAllProducts from '../components/customer/CustomerAllProducts'
+import ShoppingCart from '../components/customer/ShoppingCart'
 import {
   Typography,
   Container,
@@ -18,7 +19,8 @@ const CustomerRouting = () => {
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route path='/profile' element={<Profile />} />
-        <Route path='/:storeID' element={<CustomerAllProducts />} />
+        <Route path='/cart' element={<ShoppingCart />} />
+        <Route path='store/:storeID' element={<CustomerAllProducts />} />
         <Route path='/logout' element={<Logout />} />
         <Route
           path="*"

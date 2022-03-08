@@ -32,8 +32,8 @@ const CustomerLinkHeader = () => {
           <Button startIcon={<PersonIcon />} style={styles.link}>
             <Link to='/profile' style={styles.link}>Profile</Link>
           </Button>
-          <Button startIcon={<ShoppingCartIcon />} style={styles.link} onClick={() => console.log('cart')} >
-            <Link style={styles.link} to=''>Cart</Link>
+          <Button startIcon={<ShoppingCartIcon />} style={styles.link} >
+            <Link to='/cart' style={styles.link}>Cart</Link>
           </Button>
           <Button startIcon={<LogoutIcon />} style={styles.link}>
             <Link to='/logout' style={styles.link}>Logout</Link>

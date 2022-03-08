@@ -68,3 +68,4 @@ Store profile view | 21.02.2022 | 3 | 68 |
 Ability to check the products of the selected store | 24.02.2022 | 3 | 71 |
 |Designing the UI, initial implementation of the single product view|5.3.2022|3|74|
 |Implementing and designing customer UI | 7.3.2022 | 4 | 78 |
+|Shopping cart view|8.3.2022|3|81|

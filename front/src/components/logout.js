@@ -14,15 +14,11 @@ const Logout = () => {
   const dispatch = useDispatch()
   const client = useApolloClient()
 
-  useEffect(() => {
-    const executeLogout = async () => {
-      console.log('logout')
-      await localStorage.clear()
-      await client.resetStore();
-      navigate('/')
-      await dispatch(removeUserType())
-    }
-    executeLogout()
+  useEffect(async () => {
+    await localStorage.clear()
+    await client.resetStore();
+    navigate('/')
+    await dispatch(removeUserType())
   })
 
   return (

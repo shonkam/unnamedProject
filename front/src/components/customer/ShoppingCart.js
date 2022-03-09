@@ -29,6 +29,10 @@ const ShoppingCart = () => {
     dispatch(emptyCart())
   }
 
+  const createOrder = async () => {
+    console.log('order')
+  }
+
   while (!productsInCart) {
     return (
       <LoadingScreen />
@@ -66,7 +70,7 @@ const ShoppingCart = () => {
         <Button
           variant='contained'
           color='error'
-          onClick={() => removeItems()}
+          onClick={removeItems}
           sx={{
             marginTop: 2,
             float: 'left',
@@ -76,7 +80,7 @@ const ShoppingCart = () => {
         </Button>
         <Button
           variant='contained'
-          onClick={() => console.log('pressed')}
+          onClick={createOrder}
           sx={{
             marginTop: 2,
             float: 'right',

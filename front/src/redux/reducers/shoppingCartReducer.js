@@ -3,7 +3,7 @@ const shoppingCartReducer = (state = [], action) => {
     case 'EMPTY_CART':
       return state = []
     case 'ADD_PRODUCT':
-      return [...state, action.data.shoppingCart]
+      return [...state, action.data]
     default:
       return state
   }
@@ -12,9 +12,7 @@ const shoppingCartReducer = (state = [], action) => {
 export const addProductToCart = (product) => {
   return {
     type: 'ADD_PRODUCT',
-    data: {
-      shoppingCart: product
-    }
+    data: product
   }
 }
 

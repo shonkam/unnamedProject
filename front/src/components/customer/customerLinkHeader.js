@@ -1,5 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import StorefrontIcon from '@mui/icons-material/Storefront'
+import LogoutIcon from '@mui/icons-material/Logout'
+import PersonIcon from '@mui/icons-material/Person'
 import {
   AppBar,
   Button,
@@ -7,12 +12,10 @@ import {
   Box,
   Typography
 } from '@mui/material'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import StorefrontIcon from '@mui/icons-material/Storefront'
-import LogoutIcon from '@mui/icons-material/Logout'
-import PersonIcon from '@mui/icons-material/Person'
 
 const CustomerLinkHeader = () => {
+  const productsInCart = useSelector(state => state.shoppingCart)
+  const count = productsInCart.length
   return (
     <Container maxWidth='md'>
       <Box>
@@ -33,7 +36,7 @@ const CustomerLinkHeader = () => {
             <Link to='/profile' style={styles.link}>Profile</Link>
           </Button>
           <Button startIcon={<ShoppingCartIcon />} style={styles.link} >
-            <Link to='/cart' style={styles.link}>Cart</Link>
+            <Link to='/cart' style={styles.link}>({count}) Cart</Link>
           </Button>
           <Button startIcon={<LogoutIcon />} style={styles.link}>
             <Link to='/logout' style={styles.link}>Logout</Link>

@@ -22,6 +22,7 @@ const Home = () => {
   }
 
   const viewProducts = (store) => {
+    window.scroll(0, 0)
     navigate(`store/${store.id}`)
   }
 

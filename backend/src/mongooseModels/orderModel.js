@@ -12,14 +12,15 @@ const orderSchema = new mongoose.Schema({
     ref: 'Store',
     required: true
   },
-  items: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: ['Product'],
+  products: {
+    type: Array,
+    ref: 'Product',
     required: true
   },
   date: {
     //todo
-    date: new Date()
+    type: String,
+    required: true
   },
   orderSum: {
     type: Number,

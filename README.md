@@ -70,3 +70,4 @@ Ability to check the products of the selected store | 24.02.2022 | 3 | 71 |
 |Implementing and designing customer UI | 7.3.2022 | 4 | 78 |
 |Shopping cart view|8.3.2022|3|81|
 |Reducer and the logic to check that all the items are ordered from the same store |9.3.2022|1|82|
+|Func to create new order, minor improvements|9.3.2022|1|83|

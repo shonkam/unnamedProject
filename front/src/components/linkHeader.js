@@ -5,10 +5,8 @@ import {
   AppBar,
   Button,
   Container,
-  Box,
-  IconButton
+  Box
 } from '@mui/material'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 
 const LinkHeader = () => {
   const userLoggedIn = useSelector(state => state.user)

@@ -1,9 +1,6 @@
 import { gql } from 'apollo-server'
-import { UserInputError, AuthenticationError } from 'apollo-server'
-import Store from '../mongooseModels/storeModel.js'
-import Product from '../mongooseModels/productModel.js'
+import { AuthenticationError } from 'apollo-server'
 import Order from '../mongooseModels/orderModel.js'
-import Customer from '../mongooseModels/customerModel.js'
 
 export const typeDefs = gql`
   type Order {
@@ -20,13 +17,12 @@ export const typeDefs = gql`
   }
 
   type Query {
-    allOrders(orderID: ID): [Order]
+    allOrders: [Order]
     singleOrder(orderID: ID!): Order
   }
 
   type Mutation {
     createOrder(
-      customer: ID!
       store: ID!
       products: [ID!]!
       orderSum: String!
@@ -37,28 +33,33 @@ export const typeDefs = gql`
 export const resolvers = {
   Query: {
     allOrders: async (root, args) => {
-      return true
+      return Order.find({}).populate(['customer', 'store', 'products'])
     },
     singleOrder: async (root, args) => {
-      return true
+      return Order.findOne({ _id: args.orderID }).populate(['customer', 'store', 'products'])
     }
   },
 
   Mutation: {
-    createOrder: async (root, args) => {
+    createOrder: async (root, args, context) => {
       try {
+        if (!context.currentCustomer) {
+          throw new AuthenticationError('not logged in')
+        }
+        const user = context.currentCustomer._id
         const orderDate = new Date()
         const newOrder = new Order({
-          customer: args.customer,
+          customer: user,
           store: args.store,
           products: args.products,
           orderSum: args.orderSum,
           date: orderDate
         })
         await newOrder.save()
-        return true
+        return { successful: true }
       } catch (e) {
         console.log('error', e)
+        return { successful: false }
       }
     }
   }

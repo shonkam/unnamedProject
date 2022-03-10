@@ -2,6 +2,8 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import LoadingScreen from '../LoadingScreen'
 import { emptyCart } from '../../redux/reducers/shoppingCartReducer'
+import { removeStore } from '../../redux/reducers/currentStoreReducer'
+import useCreateOrder from '../../hooks/useCreateOrder'
 import {
   Container,
   Box,
@@ -15,11 +17,12 @@ import {
 
 const ShoppingCart = () => {
   const dispatch = useDispatch()
+  const [createOrder] = useCreateOrder()
   const productsInCart = useSelector(state => state.shoppingCart)
-
+  const currentStoreID = useSelector(state => state.currentStore)
   let totalSum = 0
   if (productsInCart) {
-    productsInCart.map((product) => {
+    productsInCart.forEach((product) => {
       totalSum += parseFloat(product.productPrice)
     })
     totalSum = totalSum.toFixed(2)
@@ -27,10 +30,18 @@ const ShoppingCart = () => {
 
   const removeItems = () => {
     dispatch(emptyCart())
+    dispatch(removeStore())
   }
 
-  const createOrder = async () => {
-    console.log('order')
+  const submitCreateOrder = async () => {
+    try {
+      await createOrder(productsInCart, totalSum, currentStoreID)
+      dispatch(emptyCart())
+      dispatch(removeStore())
+    } catch (e) {
+      // todo noti
+      console.log('Something went wrong when creating a new order')
+    }
   }
 
   while (!productsInCart) {
@@ -55,7 +66,7 @@ const ShoppingCart = () => {
               <TableRow key={product.id}>
                 <TableCell>{product.productName}</TableCell>
                 <TableCell align="center">
-                  <img style={{ maxHeight: 100, maxWidth: 80 }} src={product.productPictureURL} />
+                  <img alt={'productPreview'} style={{ maxHeight: 100, maxWidth: 80 }} src={product.productPictureURL} />
                 </TableCell>
                 <TableCell align="right">{product.productPrice}€</TableCell>
               </TableRow>
@@ -80,7 +91,7 @@ const ShoppingCart = () => {
         </Button>
         <Button
           variant='contained'
-          onClick={createOrder}
+          onClick={submitCreateOrder}
           sx={{
             marginTop: 2,
             float: 'right',

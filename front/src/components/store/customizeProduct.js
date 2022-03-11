@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import useGetSingleProduct from '../../hooks/useGetSingleProduct'
-import UpdateProductForm from './updateProductForm'
+import UpdateProductForm from './UpdateProductForm'
 
 const CustomizeProduct = () => {
 

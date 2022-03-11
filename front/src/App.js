@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Stores from './components/stores'
-import Login from './components/customer/login'
-import LinkHeader from './components/linkHeader'
-import SignUp from './components/signUp'
-import StoreLogin from './components/store/storeLogin'
+import Stores from './components/Stores'
+import Login from './components/customer/Login'
+import LinkHeader from './components/LinkHeader'
+import SignUp from './components/SignUp'
+import StoreLogin from './components/store/StoreLogin'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { setUserType } from './redux/reducers/userReducer'
-import CustomerRouting from './routing/customerRouting'
-import StoreRouting from './routing/storeRouting'
+import CustomerRouting from './routing/CustomerRouting'
+import StoreRouting from './routing/StoreRouting'
 import {
   Typography,
   Container,

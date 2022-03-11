@@ -58,8 +58,8 @@ const Login = () => {
       else {
         localStorage.setItem('userToken', response)
         localStorage.setItem('userType', 'customer')
-        navigate('/') 
-        dispatch(setUserType('customer'))        
+        navigate('/')
+        dispatch(setUserType('customer'))
       }
       //todo noti
     } catch (error) {

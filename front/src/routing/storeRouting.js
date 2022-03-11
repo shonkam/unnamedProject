@@ -1,12 +1,12 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import StoreLinkHeader from '../components/store/storeLinkHeader'
-import Logout from '../components/logout'
+import StoreLinkHeader from '../components/store/StoreLinkHeader'
+import Logout from '../components/Logout'
 import Products from '../components/store/Products'
-import AddProduct from '../components/store/addProduct'
-import CustomizeProduct from '../components/store/customizeProduct'
-import StoreProfile from '../components/store/storeProfile'
-import StoreOrders from '../components/store/storeOrders'
+import AddProduct from '../components/store/AddProduct'
+import CustomizeProduct from '../components/store/CustomizeProduct'
+import StoreProfile from '../components/store/StoreProfile'
+import StoreOrders from '../components/store/StoreOrders'
 import {
   Typography,
   Container,

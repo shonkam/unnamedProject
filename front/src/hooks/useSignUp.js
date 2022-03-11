@@ -10,7 +10,7 @@ const useSignUp = () => {
     const password = values.password
     const userType = values.userType
 
-    if (userType === 'customer') {  
+    if (userType === 'customer') {
       // mutation returns a boolean
       // about the success of the operation
       const { data } = await mutateCustomer({

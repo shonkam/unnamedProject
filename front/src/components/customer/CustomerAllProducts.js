@@ -74,26 +74,50 @@ const CustomerAllProducts = () => {
             <Typography variant="h5" component="div" sx={{ marginTop: 3 }}>
               {product.productDescription}
             </Typography>
+            {product.productStock > 0 ?
+              <Typography variant="h5" component="div" sx={{ marginTop: 1 }}>
+                In stock
+              </Typography>
+              : <Typography variant="h5" component="div" sx={{ marginTop: 1 }}>
+                Out of stock
+              </Typography>}
             <Typography variant="h5" component="div" sx={{ marginTop: 1 }} >
               {product.productPrice} €
             </Typography>
-            <Typography variant="h5" component="div" sx={{ marginTop: 1 }}>
-              {product.productStock} item in stock
-            </Typography>
-            <Button
-              variant='contained'
-              fullWidth
-              onClick={() => addToCart(product, storeID)}
-              sx={{
-                marginTop: 2,
-                flex: 1,
-                backgroundColor: '#b2afaf',
-                ':hover': {
-                  bgcolor: '#7f7d7d'
-                }
-              }}>
-              Add to cart
-            </Button>
+
+            {product.productStock > 0
+              ?
+              <Button
+                variant='contained'
+                fullWidth
+                onClick={() => addToCart(product, storeID)}
+                sx={{
+                  marginTop: 2,
+                  flex: 1,
+                  backgroundColor: '#b2afaf',
+                  ':hover': {
+                    bgcolor: '#7f7d7d'
+                  }
+                }}>
+                Add to cart
+              </Button>
+              :
+              <Button
+                variant='contained'
+                fullWidth
+                disabled
+                onClick={() => addToCart(product, storeID)}
+                sx={{
+                  marginTop: 2,
+                  flex: 1,
+                  backgroundColor: '#b2afaf',
+                  ':hover': {
+                    bgcolor: '#7f7d7d'
+                  }
+                }}>
+                Add to cart
+              </Button>
+            }
           </Box>
         </Box>
       ))}

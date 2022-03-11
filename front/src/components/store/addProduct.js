@@ -23,7 +23,7 @@ const validationSchema = yup.object().shape({
   productStock: yup
     .number('Enter the number of available stock')
     .required('Product stock is required')
-    .positive('Stock can not be negative')
+    .min(0, 'Stock can not be negative')
     .integer('Stock must be an integer')
     .typeError('Postal number can only contain numbers'),
   productPictureURL: yup

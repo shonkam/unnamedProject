@@ -21,6 +21,7 @@ const ShoppingCart = () => {
   const productsInCart = useSelector(state => state.shoppingCart)
   const currentStoreID = useSelector(state => state.currentStore)
   let totalSum = 0
+
   if (productsInCart) {
     productsInCart.forEach((product) => {
       totalSum += parseFloat(product.productPrice)
@@ -35,9 +36,13 @@ const ShoppingCart = () => {
 
   const submitCreateOrder = async () => {
     try {
-      await createOrder(productsInCart, totalSum, currentStoreID)
-      dispatch(emptyCart())
-      dispatch(removeStore())
+      if (productsInCart.length === 0) {
+        (window.alert('No items in cart'))
+      } else {
+        await createOrder(productsInCart, totalSum, currentStoreID)
+        dispatch(emptyCart())
+        dispatch(removeStore())
+      }
     } catch (e) {
       // todo noti
       console.log('Something went wrong when creating a new order')
@@ -71,7 +76,7 @@ const ShoppingCart = () => {
                 <TableCell align="right">{product.productPrice}€</TableCell>
               </TableRow>
             ))}
-            <TableRow key='kmvölwde'>
+            <TableRow key='bottomline'>
               <TableCell sx={{ fontWeight: 'bold' }}>Total</TableCell>
               <TableCell align="center"></TableCell>
               <TableCell align="right" sx={{ fontWeight: 'bold' }}>{totalSum} €</TableCell>

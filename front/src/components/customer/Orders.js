@@ -26,6 +26,7 @@ const Orders = () => {
         <Table>
           <TableHead>
             <TableRow>
+              <TableCell sx={{ fontWeight: 'bold' }}>Store</TableCell>
               <TableCell sx={{ fontWeight: 'bold' }}>Date</TableCell>
               <TableCell align="center" sx={{ fontWeight: 'bold' }}>Number of products</TableCell>
               <TableCell align="right" sx={{ fontWeight: 'bold' }}>Total</TableCell>
@@ -34,7 +35,8 @@ const Orders = () => {
           <TableBody>
             {allOrders.map((order) => (
               <TableRow key={order._id}>
-                <TableCell>{order.date}</TableCell>
+                <TableCell>{order.store.name}</TableCell>
+                <TableCell>{order.date.substr(0, 25)}</TableCell>
                 <TableCell align="center">{order.products.length}</TableCell>
                 <TableCell align="right">{order.orderSum} €</TableCell>
               </TableRow>

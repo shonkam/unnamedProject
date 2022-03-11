@@ -12,7 +12,6 @@ import {
 const StoreProfile = () => {
   const singleStore = true
   const ownStore = useGetStores(singleStore)
-  console.log(ownStore)
 
   while (!ownStore) {
     return (

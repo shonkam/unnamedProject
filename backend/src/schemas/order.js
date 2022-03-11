@@ -34,7 +34,6 @@ export const resolvers = {
   Query: {
     allOrders: async (root, args, context) => {
       if (context.currentCustomer) {
-        console.log(context.currentCustomer._id)
         return await Order.find({ customer: context.currentCustomer._id }).populate(['customer', 'store', 'products'])
       } else {
         return await Order.find({}).populate(['customer', 'store', 'products'])

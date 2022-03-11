@@ -73,3 +73,4 @@ Ability to check the products of the selected store | 24.02.2022 | 3 | 71 |
 |Func to create new order, minor improvements|9.3.2022|1|83|
 |Create order from frontend|10.3.2022|2|85|
 |Orders view|11.3.2022|1|86|
+|Improvements on Orders view and disabling product purchasing if the product is out of stock|11.3.2022|2|88|

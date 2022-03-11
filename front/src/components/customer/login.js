@@ -56,11 +56,10 @@ const Login = () => {
         console.log('Login failed, please check your credentials')
       }
       else {
-        console.log('Your token is: ', response)
-        await localStorage.setItem('userToken', response)
-        await localStorage.setItem('userType', 'customer')
+        localStorage.setItem('userToken', response)
+        localStorage.setItem('userType', 'customer')
         navigate('/') 
-        await dispatch(setUserType('customer'))        
+        dispatch(setUserType('customer'))        
       }
       //todo noti
     } catch (error) {

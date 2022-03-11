@@ -23,7 +23,7 @@ const orderSchema = new mongoose.Schema({
     required: true
   },
   orderSum: {
-    type: Number,
+    type: String,
     required: true
   }
 })

@@ -5,6 +5,7 @@ const useCreateOrder = () => {
   const [mutate] = useMutation(CREATE_ORDER)
 
   const createOrder = async (productsInCart, totalSum, currentStoreID) => {
+
     const productIDArray = productsInCart.map((entry) => {
       return entry.id
     })

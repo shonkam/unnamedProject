@@ -1,5 +1,22 @@
 import { gql } from '@apollo/client'
 
+export const GET_ORDERS = gql`
+  query AllOrders {
+    allOrders {
+      _id
+      store {
+        name
+      }
+      products {
+        productName
+        productPrice
+      }
+      date
+      orderSum
+    }
+  }
+`
+
 export const CREATE_ORDER = gql`
   mutation CreateOrder($store: ID!, $products: [ID!]!, $orderSum: String!) {
     createOrder(store: $store, products: $products, orderSum: $orderSum) {

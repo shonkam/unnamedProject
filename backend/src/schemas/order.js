@@ -32,11 +32,16 @@ export const typeDefs = gql`
 
 export const resolvers = {
   Query: {
-    allOrders: async (root, args) => {
-      return Order.find({}).populate(['customer', 'store', 'products'])
+    allOrders: async (root, args, context) => {
+      if (context.currentCustomer) {
+        console.log(context.currentCustomer._id)
+        return await Order.find({ customer: context.currentCustomer._id }).populate(['customer', 'store', 'products'])
+      } else {
+        return await Order.find({}).populate(['customer', 'store', 'products'])
+      }
     },
     singleOrder: async (root, args) => {
-      return Order.findOne({ _id: args.orderID }).populate(['customer', 'store', 'products'])
+      return await Order.findOne({ _id: args.orderID }).populate(['customer', 'store', 'products'])
     }
   },
 

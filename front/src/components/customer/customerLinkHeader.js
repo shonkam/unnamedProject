@@ -33,7 +33,7 @@ const CustomerLinkHeader = () => {
             <Link to='/' style={styles.link}>Stores</Link>
           </Button>
           <Button startIcon={<PersonIcon />} style={styles.link}>
-            <Link to='/profile' style={styles.link}>Profile</Link>
+            <Link to='/orders' style={styles.link}>Orders</Link>
           </Button>
           <Button startIcon={<ShoppingCartIcon />} style={styles.link} >
             <Link to='/cart' style={styles.link}>({count}) Cart</Link>

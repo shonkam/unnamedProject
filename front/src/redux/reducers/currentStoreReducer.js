@@ -1,7 +1,8 @@
+// eslint-disable-next-line default-param-last
 const currentStoreReducer = (state = null, action) => {
   switch (action.type) {
     case 'REMOVE_STORE':
-      return state = null
+      return state === null
     case 'SET_STORE':
       return action.data
     default:
@@ -9,17 +10,13 @@ const currentStoreReducer = (state = null, action) => {
   }
 }
 
-export const setStore = (store) => {
-  return {
-    type: 'SET_STORE',
-    data: store
-  }
-}
+export const setStore = (store) => ({
+  type: 'SET_STORE',
+  data: store,
+})
 
-export const removeStore = () => {
-  return {
-    type: 'REMOVE_STORE'
-  }
-}
+export const removeStore = () => ({
+  type: 'REMOVE_STORE',
+})
 
 export default currentStoreReducer

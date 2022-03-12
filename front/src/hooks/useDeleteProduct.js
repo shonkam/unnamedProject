@@ -1,5 +1,5 @@
-import { DELETE_PRODUCT, GET_ALL_PRODUCTS } from '../graphql/queries'
 import { useMutation } from '@apollo/client'
+import { DELETE_PRODUCT, GET_ALL_PRODUCTS } from '../graphql/queries'
 
 const useDeleteProduct = () => {
   const [mutateProduct] = useMutation(DELETE_PRODUCT)
@@ -7,9 +7,9 @@ const useDeleteProduct = () => {
   const deleteProduct = async (productID) => {
     const { data, error } = await mutateProduct({
       variables: {
-        productID: productID,
+        productID,
       },
-      refetchQueries: [{ query: GET_ALL_PRODUCTS }]
+      refetchQueries: [{ query: GET_ALL_PRODUCTS }],
     })
 
     if (error) {

@@ -1,13 +1,12 @@
-import { GET_ALL_PRODUCTS } from '../graphql/queries'
 import { useQuery } from '@apollo/client'
+import { GET_ALL_PRODUCTS } from '../graphql/queries'
 
 const useGetAllProducts = (storeID) => {
-
   const { data, loading, error } = useQuery(GET_ALL_PRODUCTS, {
-    variables: { storeID }
+    variables: { storeID },
   })
 
-  while (loading) {
+  if (loading) {
     return null
   }
   if (error) {

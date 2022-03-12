@@ -1,9 +1,5 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import LoadingScreen from '../LoadingScreen'
-import { emptyCart } from '../../redux/reducers/shoppingCartReducer'
-import { removeStore } from '../../redux/reducers/currentStoreReducer'
-import useCreateOrder from '../../hooks/useCreateOrder'
 import {
   Container,
   Box,
@@ -12,14 +8,18 @@ import {
   TableHead,
   TableBody,
   TableRow,
-  TableCell
+  TableCell,
 } from '@mui/material'
+import LoadingScreen from '../LoadingScreen'
+import { emptyCart } from '../../redux/reducers/shoppingCartReducer'
+import { removeStore } from '../../redux/reducers/currentStoreReducer'
+import useCreateOrder from '../../hooks/useCreateOrder'
 
 const ShoppingCart = () => {
   const dispatch = useDispatch()
   const [createOrder] = useCreateOrder()
-  const productsInCart = useSelector(state => state.shoppingCart)
-  const currentStoreID = useSelector(state => state.currentStore)
+  const productsInCart = useSelector((state) => state.shoppingCart)
+  const currentStoreID = useSelector((state) => state.currentStore)
   let totalSum = 0
 
   if (productsInCart) {
@@ -37,6 +37,7 @@ const ShoppingCart = () => {
   const submitCreateOrder = async () => {
     try {
       if (productsInCart.length === 0) {
+        // eslint-disable-next-line no-alert
         (window.alert('No items in cart'))
       } else {
         await createOrder(productsInCart, totalSum, currentStoreID)
@@ -49,7 +50,7 @@ const ShoppingCart = () => {
     }
   }
 
-  while (!productsInCart) {
+  if (!productsInCart) {
     return (
       <LoadingScreen />
     )
@@ -62,24 +63,31 @@ const ShoppingCart = () => {
           <TableHead>
             <TableRow>
               <TableCell sx={{ fontWeight: 'bold' }}>Name</TableCell>
-              <TableCell align="center" sx={{ fontWeight: 'bold' }}>Preview</TableCell>
-              <TableCell align="right" sx={{ fontWeight: 'bold' }}>Price</TableCell>
+              <TableCell align='center' sx={{ fontWeight: 'bold' }}>Preview</TableCell>
+              <TableCell align='right' sx={{ fontWeight: 'bold' }}>Price</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {productsInCart.map((product) => (
               <TableRow key={product.id}>
                 <TableCell>{product.productName}</TableCell>
-                <TableCell align="center">
-                  <img alt={'productPreview'} style={{ maxHeight: 100, maxWidth: 80 }} src={product.productPictureURL} />
+                <TableCell align='center'>
+                  <img alt='productPreview' style={{ maxHeight: 100, maxWidth: 80 }} src={product.productPictureURL} />
                 </TableCell>
-                <TableCell align="right">{product.productPrice}€</TableCell>
+                <TableCell align='right'>
+                  {product.productPrice}
+                  €
+                </TableCell>
               </TableRow>
             ))}
             <TableRow key='bottomline'>
               <TableCell sx={{ fontWeight: 'bold' }}>Total</TableCell>
-              <TableCell align="center"></TableCell>
-              <TableCell align="right" sx={{ fontWeight: 'bold' }}>{totalSum} €</TableCell>
+              <TableCell align='center' />
+              <TableCell align='right' sx={{ fontWeight: 'bold' }}>
+                {totalSum}
+                {' '}
+                €
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -90,8 +98,9 @@ const ShoppingCart = () => {
           sx={{
             marginTop: 2,
             float: 'left',
-            alignSelf: 'end'
-          }}>
+            alignSelf: 'end',
+          }}
+        >
           Remove items
         </Button>
         <Button
@@ -103,9 +112,10 @@ const ShoppingCart = () => {
             alignSelf: 'end',
             backgroundColor: '#b2afaf',
             ':hover': {
-              bgcolor: '#7f7d7d'
-            }
-          }}>
+              bgcolor: '#7f7d7d',
+            },
+          }}
+        >
           Purchase
         </Button>
       </Box>

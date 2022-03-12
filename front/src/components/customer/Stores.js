@@ -1,6 +1,4 @@
 import React from 'react'
-import useGetAllStores from '../../hooks/useGetStores'
-import LoadingScreen from '../LoadingScreen'
 import { useNavigate } from 'react-router-dom'
 import {
   Container,
@@ -8,14 +6,16 @@ import {
   Typography,
   CardActionArea,
   CardMedia,
-  CardContent
+  CardContent,
 } from '@mui/material'
+import useGetAllStores from '../../hooks/useGetStores'
+import LoadingScreen from '../LoadingScreen'
 
-const Home = () => {
+const Stores = () => {
   const navigate = useNavigate()
   const allStores = useGetAllStores()
 
-  while (!allStores) {
+  if (!allStores) {
     return (
       <LoadingScreen />
     )
@@ -31,24 +31,25 @@ const Home = () => {
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
-        marginTop: 3
-      }}>
+        marginTop: 3,
+      }}
+      >
         {allStores.map((store) => (
           <CardActionArea
             key={store.id}
             onClick={() => viewProducts(store)}
           >
             <CardMedia
-              component="img"
+              component='img'
               image={`${store.backgroundPictureURL}`}
-              alt="profile"
+              alt='profile'
               sx={{ maxHeight: 500 }}
             />
             <CardContent>
-              <Typography variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
+              <Typography variant='h5' component='div' sx={{ fontWeight: 'bold' }}>
                 {store.name}
               </Typography>
-              <Typography variant="h6" component="div">
+              <Typography variant='h6' component='div'>
                 {store.description}
               </Typography>
             </CardContent>
@@ -59,4 +60,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Stores

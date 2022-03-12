@@ -1,11 +1,10 @@
-import { GET_ORDERS } from '../graphql/queries'
 import { useQuery } from '@apollo/client'
+import { GET_ORDERS } from '../graphql/queries'
 
 const useGetOrders = () => {
-
   const { data, loading, error } = useQuery(GET_ORDERS)
 
-  while (loading) {
+  if (loading) {
     return null
   }
   if (error) {

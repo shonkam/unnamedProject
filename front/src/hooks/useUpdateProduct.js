@@ -1,26 +1,25 @@
-import { UPDATE_PRODUCT, GET_ALL_PRODUCTS } from '../graphql/queries'
 import { useMutation } from '@apollo/client'
+import { UPDATE_PRODUCT, GET_ALL_PRODUCTS } from '../graphql/queries'
 
 const useUpdateProduct = () => {
   const [mutateProduct] = useMutation(UPDATE_PRODUCT)
 
   const updateProduct = async (updatedProduct) => {
-
     const tempPrice = parseFloat(updatedProduct.productPrice)
     const productPrice = tempPrice.toFixed(2)
 
-    const productStock = parseInt(updatedProduct.productStock)
+    const productStock = parseInt(updatedProduct.productStock, 10)
 
     const { data, error } = await mutateProduct({
       variables: {
         productID: updatedProduct.id,
         productName: updatedProduct.productName,
-        productPrice: productPrice,
-        productStock: productStock,
+        productPrice,
+        productStock,
         productPictureURL: updatedProduct.productPictureURL,
-        productDescription: updatedProduct.productDescription
+        productDescription: updatedProduct.productDescription,
       },
-      refetchQueries: [{ query: GET_ALL_PRODUCTS }]
+      refetchQueries: [{ query: GET_ALL_PRODUCTS }],
     })
 
     if (error) {

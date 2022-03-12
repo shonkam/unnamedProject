@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import { useApolloClient } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { removeUserType } from '../redux/reducers/userReducer'
 import {
   Container,
   Box,
-  Typography
+  Typography,
 } from '@mui/material'
+import { removeUserType } from '../redux/reducers/userReducer'
 
 const Logout = () => {
   const navigate = useNavigate()
@@ -16,7 +16,7 @@ const Logout = () => {
 
   useEffect(() => {
     localStorage.clear()
-    client.resetStore();
+    client.resetStore()
     navigate('/')
     dispatch(removeUserType())
   })
@@ -26,8 +26,9 @@ const Logout = () => {
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: 20
-      }}>
+        paddingTop: 20,
+      }}
+      >
         <Typography
           component='h1'
           variant='h6'

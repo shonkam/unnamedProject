@@ -1,18 +1,17 @@
-import { LOGIN_CUSTOMER } from "../graphql/queries"
 import { useMutation } from '@apollo/client'
+import { LOGIN_CUSTOMER } from '../graphql/queries'
 
 const useLogin = () => {
   const [mutate] = useMutation(LOGIN_CUSTOMER)
 
   const loginCustomer = async (email, password) => {
-
-    // mutation returns a jwt 
+    // mutation returns a jwt
     // token if params are correct
     const { data } = await mutate({
       variables: {
         email,
-        password
-      }
+        password,
+      },
     })
 
     // forward token if received
@@ -20,9 +19,8 @@ const useLogin = () => {
     if (data.loginCustomer.token) {
       return data.loginCustomer.token
     }
-    else {
-      return false
-    }
+
+    return false
   }
   return [loginCustomer]
 }

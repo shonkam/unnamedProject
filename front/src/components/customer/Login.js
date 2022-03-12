@@ -2,16 +2,16 @@ import React from 'react'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
-import useStoreLogin from '../../hooks/useStoreLogin'
 import { useDispatch } from 'react-redux'
-import { setUserType } from '../../redux/reducers/userReducer'
 import {
   Button,
   Container,
   Box,
   Typography,
-  TextField
+  TextField,
 } from '@mui/material'
+import useLogin from '../../hooks/useLogin'
+import { setUserType } from '../../redux/reducers/userReducer'
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -24,28 +24,16 @@ const validationSchema = yup.object().shape({
     .required('Password is required'),
 })
 
-const StoreLogin = () => {
-  const [login] = useStoreLogin()
+const Login = () => {
+  const [login] = useLogin()
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  //submit login credentials
-  const loginForm = useFormik({
-    initialValues: {
-      email: '',
-      password: ''
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      submitLogin(values)
-    }
-  })
-
-  //submit login credentials
+  // submit login credentials
   const submitLogin = async (values) => {
     try {
-      const email = values.email
-      const password = values.password
+      const { email } = values
+      const { password } = values
 
       const response = await login(email, password)
 
@@ -55,34 +43,44 @@ const StoreLogin = () => {
       // token
       if (!response) {
         console.log('Login failed, please check your credentials')
-      }
-      else {
-        console.log('Your token is: ', response)
-        await localStorage.setItem('userToken', response)
-        await localStorage.setItem('userType', 'store')
+      } else {
+        localStorage.setItem('userToken', response)
+        localStorage.setItem('userType', 'customer')
         navigate('/')
-        await dispatch(setUserType('store'))
+        dispatch(setUserType('customer'))
       }
-      //todo noti
+      // todo noti
     } catch (error) {
       console.log(error)
-      //todo noti
+      // todo noti
     }
   }
+
+  const loginForm = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      submitLogin(values)
+    },
+  })
 
   return (
     <Container maxWidth='xs'>
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: 15
-      }}>
+        paddingTop: 15,
+      }}
+      >
         <Typography
           component='h1'
           variant='h5'
           alignSelf='center'
         >
-          Store login
+          Login
         </Typography>
         <Box
           component='form'
@@ -96,8 +94,14 @@ const StoreLogin = () => {
             label='Email'
             value={loginForm.values.email}
             onChange={loginForm.handleChange}
-            error={loginForm.touched.email && Boolean(loginForm.errors.email)}
-            helperText={loginForm.touched.email && loginForm.errors.email}
+            error={
+              loginForm.touched.email
+              && Boolean(loginForm.errors.email)
+            }
+            helperText={
+              loginForm.touched.email
+              && loginForm.errors.email
+            }
           />
           <TextField
             margin='normal'
@@ -108,8 +112,14 @@ const StoreLogin = () => {
             type='password'
             value={loginForm.values.password}
             onChange={loginForm.handleChange}
-            error={loginForm.touched.password && Boolean(loginForm.errors.password)}
-            helperText={loginForm.touched.password && loginForm.errors.password}
+            error={
+              loginForm.touched.password
+              && Boolean(loginForm.errors.password)
+            }
+            helperText={
+              loginForm.touched.password
+              && loginForm.errors.password
+            }
           />
           <Button
             color='primary'
@@ -125,5 +135,4 @@ const StoreLogin = () => {
   )
 }
 
-
-export default StoreLogin
+export default Login

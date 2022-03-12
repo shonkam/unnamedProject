@@ -15,11 +15,11 @@ const useAddProduct = () => {
     const { data } = await mutate({
       variables: {
         productName: values.productName,
-        productPrice: productPrice,
-        productStock: productStock,
+        productPrice,
+        productStock,
         productPictureURL: values.productPictureURL,
-        productDescription: values.productDescription
-      }
+        productDescription: values.productDescription,
+      },
     })
 
     // received boolean is passed

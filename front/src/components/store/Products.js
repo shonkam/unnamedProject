@@ -1,5 +1,4 @@
 import React from 'react'
-import useGetAllProducts from '../../hooks/useGetAllProducts'
 import { useNavigate } from 'react-router-dom'
 import {
   Container,
@@ -8,22 +7,24 @@ import {
   ImageList,
   ImageListItem,
   ImageListItemBar,
-  IconButton
+  IconButton,
 } from '@mui/material'
 import SettingsIcon from '@mui/icons-material/Settings'
+import useGetAllProducts from '../../hooks/useGetAllProducts'
 
 const Products = () => {
   const navigate = useNavigate()
   const ownProducts = useGetAllProducts()
 
-  while (!ownProducts) {
+  if (!ownProducts) {
     return (
       <Container maxWidth='lg'>
         <Box sx={{
           display: 'flex',
           flexDirection: 'column',
-          paddingTop: 20
-        }}>
+          paddingTop: 20,
+        }}
+        >
           <Typography
             component='h1'
             variant='h6'
@@ -45,8 +46,9 @@ const Products = () => {
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: 2
-      }}>
+        paddingTop: 2,
+      }}
+      >
         <Typography
           component='h1'
           variant='h5'
@@ -65,16 +67,16 @@ const Products = () => {
               <img
                 src={`${product.productPictureURL}`}
                 alt={product.productName}
-                loading="lazy"
+                loading='lazy'
               />
               <ImageListItemBar
                 title={product.productName}
                 subtitle={product.productDescription}
-                actionIcon={
+                actionIcon={(
                   <IconButton onClick={() => customizeProduct(product)}>
                     <SettingsIcon sx={{ color: 'white' }} />
                   </IconButton>
-                }
+                )}
               />
             </ImageListItem>
           ))}

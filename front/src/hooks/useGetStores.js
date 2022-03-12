@@ -1,11 +1,10 @@
-import { GET_STORES } from '../graphql/queries'
 import { useQuery } from '@apollo/client'
+import { GET_STORES } from '../graphql/queries'
 
 const useGetStores = (singleStore) => {
-
   const { data, error, loading } = useQuery(GET_STORES)
 
-  while (loading) {
+  if (loading) {
     return null
   }
   if (error) {
@@ -16,9 +15,8 @@ const useGetStores = (singleStore) => {
   if (singleStore) {
     return data.allStores[0]
   }
-  else {
-    return data.allStores
-  }
+
+  return data.allStores
 }
 
 export default useGetStores

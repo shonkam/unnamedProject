@@ -1,3 +1,4 @@
+// eslint-disable-next-line default-param-last
 const userReducer = (state = null, action) => {
   switch (action.type) {
     case 'SET_USER_TYPE':
@@ -9,19 +10,15 @@ const userReducer = (state = null, action) => {
   }
 }
 
-export const setUserType = (userType) => {
-  return {
-    type: 'SET_USER_TYPE',
-    data: {
-      userType: userType
-    }
-  }
-}
+export const setUserType = (userType) => ({
+  type: 'SET_USER_TYPE',
+  data: {
+    userType,
+  },
+})
 
-export const removeUserType = () => {
-  return {
-    type: 'REMOVE_USER_TYPE'
-  }
-}
+export const removeUserType = () => ({
+  type: 'REMOVE_USER_TYPE',
+})
 
 export default userReducer

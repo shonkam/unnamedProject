@@ -10,16 +10,32 @@ import {
   Button,
   Container,
   Box,
-  Typography
+  Typography,
 } from '@mui/material'
 
+const styles = {
+  link: {
+    color: 'white',
+    textDecoration: 'none',
+  },
+}
+
 const CustomerLinkHeader = () => {
-  const productsInCart = useSelector(state => state.shoppingCart)
+  const productsInCart = useSelector((state) => state.shoppingCart)
   const count = productsInCart.length
+
   return (
     <Container maxWidth='md'>
       <Box>
-        <Typography variant="h2" sx={{ display: 'flex', marginBottom: 1, justifyContent: 'center', fontFamily: 'Roboto' }} >
+        <Typography
+          variant='h2'
+          sx={{
+            display: 'flex',
+            marginBottom: 1,
+            justifyContent: 'center',
+            fontFamily: 'Roboto',
+          }}
+        >
           Small Shops
         </Typography>
       </Box>
@@ -27,16 +43,21 @@ const CustomerLinkHeader = () => {
         <Box sx={{
           display: 'flex',
           backgroundColor: '#b2afaf',
-          justifyContent: 'space-evenly'
-        }}>
+          justifyContent: 'space-evenly',
+        }}
+        >
           <Button startIcon={<StorefrontIcon />} style={styles.link}>
             <Link to='/' style={styles.link}>Stores</Link>
           </Button>
           <Button startIcon={<PersonIcon />} style={styles.link}>
             <Link to='/orders' style={styles.link}>Orders</Link>
           </Button>
-          <Button startIcon={<ShoppingCartIcon />} style={styles.link} >
-            <Link to='/cart' style={styles.link}>({count}) Cart</Link>
+          <Button startIcon={<ShoppingCartIcon />} style={styles.link}>
+            <Link to='/cart' style={styles.link}>
+              (
+              {count}
+              ) Cart
+            </Link>
           </Button>
           <Button startIcon={<LogoutIcon />} style={styles.link}>
             <Link to='/logout' style={styles.link}>Logout</Link>
@@ -45,13 +66,6 @@ const CustomerLinkHeader = () => {
       </AppBar>
     </Container>
   )
-}
-
-const styles = {
-  link: {
-    color: 'white',
-    textDecoration: "none"
-  }
 }
 
 export default CustomerLinkHeader

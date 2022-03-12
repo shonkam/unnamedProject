@@ -1,7 +1,8 @@
+// eslint-disable-next-line default-param-last
 const shoppingCartReducer = (state = [], action) => {
   switch (action.type) {
     case 'EMPTY_CART':
-      return state = []
+      return state === []
     case 'ADD_PRODUCT':
       return [...state, action.data]
     default:
@@ -9,17 +10,13 @@ const shoppingCartReducer = (state = [], action) => {
   }
 }
 
-export const addProductToCart = (product) => {
-  return {
-    type: 'ADD_PRODUCT',
-    data: product
-  }
-}
+export const addProductToCart = (product) => ({
+  type: 'ADD_PRODUCT',
+  data: product,
+})
 
-export const emptyCart = () => {
-  return {
-    type: 'EMPTY_CART'
-  }
-}
+export const emptyCart = () => ({
+  type: 'EMPTY_CART',
+})
 
 export default shoppingCartReducer

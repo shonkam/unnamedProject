@@ -2,8 +2,6 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
-import useUpdateProduct from '../../hooks/useUpdateProduct'
-import useDeleteProduct from '../../hooks/useDeleteProduct'
 import {
   Button,
   Container,
@@ -11,6 +9,8 @@ import {
   Typography,
   TextField,
 } from '@mui/material'
+import useUpdateProduct from '../../hooks/useUpdateProduct'
+import useDeleteProduct from '../../hooks/useDeleteProduct'
 
 const validationSchema = yup.object().shape({
   productName: yup
@@ -32,28 +32,13 @@ const validationSchema = yup.object().shape({
     .required('Picture URL is required'),
   productDescription: yup
     .string('Enter the description of the product')
-    .required('Product description is required')
+    .required('Product description is required'),
 })
-
 
 const UpdateProductForm = ({ customizedProduct }) => {
   const [updateProduct] = useUpdateProduct()
   const [deleteProduct] = useDeleteProduct()
   const navigate = useNavigate()
-
-  const addProductForm = useFormik({
-    initialValues: {
-      productName: customizedProduct.productName,
-      productPrice: customizedProduct.productPrice,
-      productStock: customizedProduct.productStock,
-      productPictureURL: customizedProduct.productPictureURL,
-      productDescription: customizedProduct.productDescription
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      submitUpdatedProduct(values)
-    }
-  })
 
   const submitUpdatedProduct = async (values) => {
     try {
@@ -63,7 +48,7 @@ const UpdateProductForm = ({ customizedProduct }) => {
         productPrice: values.productPrice,
         productStock: values.productStock,
         productPictureURL: values.productPictureURL,
-        productDescription: values.productDescription
+        productDescription: values.productDescription,
       }
       const response = await updateProduct(updatedProduct)
       // const response = await addProduct(values)
@@ -72,8 +57,7 @@ const UpdateProductForm = ({ customizedProduct }) => {
       if (response) {
         // todo noti
         navigate('/products')
-      }
-      else {
+      } else {
         // todo noti
         console.log('could not update product')
       }
@@ -82,15 +66,29 @@ const UpdateProductForm = ({ customizedProduct }) => {
     }
   }
 
+  const addProductForm = useFormik({
+    initialValues: {
+      productName: customizedProduct.productName,
+      productPrice: customizedProduct.productPrice,
+      productStock: customizedProduct.productStock,
+      productPictureURL: customizedProduct.productPictureURL,
+      productDescription: customizedProduct.productDescription,
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      submitUpdatedProduct(values)
+    },
+  })
+
   const submitDeleteProduct = async () => {
+    // eslint-disable-next-line no-alert
     if (window.confirm('Are you sure you want to delete this product?')) {
       const response = await deleteProduct(customizedProduct.id)
       if (response) {
         // todo noti
         navigate('/products')
       }
-    }
-    else {
+    } else {
       // todo noti
       console.log('could not remove product')
     }
@@ -102,8 +100,9 @@ const UpdateProductForm = ({ customizedProduct }) => {
         display: 'flex',
         flexDirection: 'column',
         paddingTop: 15,
-        alignItems: 'center'
-      }}>
+        alignItems: 'center',
+      }}
+      >
         <Typography
           component='h1'
           variant='h5'
@@ -115,7 +114,6 @@ const UpdateProductForm = ({ customizedProduct }) => {
           component='form'
           onSubmit={addProductForm.handleSubmit}
         >
-
           <Typography
             sx={{ paddingTop: 3 }}
             variant='subtitle1'
@@ -123,7 +121,6 @@ const UpdateProductForm = ({ customizedProduct }) => {
           >
             Please fill in the information about the product
           </Typography>
-
           <TextField
             margin='normal'
             fullWidth
@@ -133,8 +130,14 @@ const UpdateProductForm = ({ customizedProduct }) => {
             onSubmit={addProductForm.handleSubmit}
             value={addProductForm.values.productName}
             onChange={addProductForm.handleChange}
-            error={addProductForm.touched.productName && Boolean(addProductForm.errors.productName)}
-            helperText={addProductForm.touched.productName && addProductForm.errors.productName}
+            error={
+              addProductForm.touched.productName
+              && Boolean(addProductForm.errors.productName)
+            }
+            helperText={
+              addProductForm.touched.productName
+              && addProductForm.errors.productName
+            }
           />
           <TextField
             margin='normal'
@@ -145,8 +148,14 @@ const UpdateProductForm = ({ customizedProduct }) => {
             onSubmit={addProductForm.handleSubmit}
             value={addProductForm.values.productPrice}
             onChange={addProductForm.handleChange}
-            error={addProductForm.touched.productPrice && Boolean(addProductForm.errors.productPrice)}
-            helperText={addProductForm.touched.productPrice && addProductForm.errors.productPrice}
+            error={
+              addProductForm.touched.productPrice
+              && Boolean(addProductForm.errors.productPrice)
+            }
+            helperText={
+              addProductForm.touched.productPrice
+              && addProductForm.errors.productPrice
+            }
           />
           <TextField
             margin='normal'
@@ -157,10 +166,15 @@ const UpdateProductForm = ({ customizedProduct }) => {
             onSubmit={addProductForm.handleSubmit}
             value={addProductForm.values.productStock}
             onChange={addProductForm.handleChange}
-            error={addProductForm.touched.productStock && Boolean(addProductForm.errors.productStock)}
-            helperText={addProductForm.touched.productStock && addProductForm.errors.productStock}
+            error={
+              addProductForm.touched.productStock
+              && Boolean(addProductForm.errors.productStock)
+            }
+            helperText={
+              addProductForm.touched.productStock
+              && addProductForm.errors.productStock
+            }
           />
-
           <TextField
             margin='normal'
             fullWidth
@@ -170,10 +184,15 @@ const UpdateProductForm = ({ customizedProduct }) => {
             onSubmit={addProductForm.handleSubmit}
             value={addProductForm.values.productPictureURL}
             onChange={addProductForm.handleChange}
-            error={addProductForm.touched.productPictureURL && Boolean(addProductForm.errors.productPictureURL)}
-            helperText={addProductForm.touched.productPictureURL && addProductForm.errors.productPictureURL}
+            error={
+              addProductForm.touched.productPictureURL
+              && Boolean(addProductForm.errors.productPictureURL)
+            }
+            helperText={
+              addProductForm.touched.productPictureURL
+              && addProductForm.errors.productPictureURL
+            }
           />
-
           <TextField
             margin='normal'
             fullWidth
@@ -183,17 +202,22 @@ const UpdateProductForm = ({ customizedProduct }) => {
             onSubmit={addProductForm.handleSubmit}
             value={addProductForm.values.productDescription}
             onChange={addProductForm.handleChange}
-            error={addProductForm.touched.productDescription && Boolean(addProductForm.errors.productDescription)}
-            helperText={addProductForm.touched.productDescription && addProductForm.errors.productDescription}
+            error={
+              addProductForm.touched.productDescription
+              && Boolean(addProductForm.errors.productDescription)
+            }
+            helperText={
+              addProductForm.touched.productDescription
+              && addProductForm.errors.productDescription
+            }
           />
-
           <Button
             color='primary'
             variant='contained'
             fullWidth
             type='submit'
             sx={{
-              marginTop: 2
+              marginTop: 2,
             }}
           >
             Update product
@@ -204,7 +228,7 @@ const UpdateProductForm = ({ customizedProduct }) => {
             fullWidth
             onClick={() => navigate('/products')}
             sx={{
-              marginTop: 2
+              marginTop: 2,
             }}
           >
             Cancel
@@ -215,14 +239,14 @@ const UpdateProductForm = ({ customizedProduct }) => {
             fullWidth
             onClick={submitDeleteProduct}
             sx={{
-              marginTop: 6
+              marginTop: 6,
             }}
           >
             Delete product
           </Button>
         </Box>
       </Box>
-    </Container >
+    </Container>
   )
 }
 

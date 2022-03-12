@@ -4,17 +4,16 @@ import useGetSingleProduct from '../../hooks/useGetSingleProduct'
 import UpdateProductForm from './UpdateProductForm'
 
 const CustomizeProduct = () => {
-
   const { id } = useParams()
   const customizedProduct = useGetSingleProduct(id)
 
-  while (!customizedProduct) {
+  if (!customizedProduct) {
     return (
       <div>loading...</div>
     )
   }
   return (
-    < UpdateProductForm customizedProduct={customizedProduct} />
+    <UpdateProductForm customizedProduct={customizedProduct} />
   )
 }
 

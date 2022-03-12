@@ -1,5 +1,4 @@
 import React from 'react'
-import useAddProduct from '../../hooks/useAddProduct'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
@@ -10,6 +9,7 @@ import {
   Typography,
   TextField,
 } from '@mui/material'
+import useAddProduct from '../../hooks/useAddProduct'
 
 const validationSchema = yup.object().shape({
   productName: yup
@@ -31,26 +31,12 @@ const validationSchema = yup.object().shape({
     .required('Picture URL is required'),
   productDescription: yup
     .string('Enter the description of the product')
-    .required('Product description is required')
+    .required('Product description is required'),
 })
 
 const AddProduct = () => {
   const [addProduct] = useAddProduct()
   const navigate = useNavigate()
-
-  const addProductForm = useFormik({
-    initialValues: {
-      productName: '',
-      productPrice: '',
-      productStock: '',
-      productPictureURL: '',
-      productDescription: ''
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      submitAddProduct(values)
-    }
-  })
 
   const submitAddProduct = async (values) => {
     try {
@@ -66,14 +52,29 @@ const AddProduct = () => {
     }
   }
 
+  const addProductForm = useFormik({
+    initialValues: {
+      productName: '',
+      productPrice: '',
+      productStock: '',
+      productPictureURL: '',
+      productDescription: '',
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      submitAddProduct(values)
+    },
+  })
+
   return (
     <Container maxWidth='xs'>
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
         paddingTop: 15,
-        alignItems: 'center'
-      }}>
+        alignItems: 'center',
+      }}
+      >
         <Typography
           component='h1'
           variant='h5'
@@ -92,7 +93,6 @@ const AddProduct = () => {
           >
             Please fill in the information about the product
           </Typography>
-
           <TextField
             margin='normal'
             fullWidth
@@ -102,8 +102,14 @@ const AddProduct = () => {
             onSubmit={addProductForm.handleSubmit}
             value={addProductForm.values.productName}
             onChange={addProductForm.handleChange}
-            error={addProductForm.touched.productName && Boolean(addProductForm.errors.productName)}
-            helperText={addProductForm.touched.productName && addProductForm.errors.productName}
+            error={
+              addProductForm.touched.productName
+              && Boolean(addProductForm.errors.productName)
+            }
+            helperText={
+              addProductForm.touched.productName
+              && addProductForm.errors.productName
+            }
           />
           <TextField
             margin='normal'
@@ -114,8 +120,14 @@ const AddProduct = () => {
             onSubmit={addProductForm.handleSubmit}
             value={addProductForm.values.productDescription}
             onChange={addProductForm.handleChange}
-            error={addProductForm.touched.productDescription && Boolean(addProductForm.errors.productDescription)}
-            helperText={addProductForm.touched.productDescription && addProductForm.errors.productDescription}
+            error={
+              addProductForm.touched.productDescription
+              && Boolean(addProductForm.errors.productDescription)
+            }
+            helperText={
+              addProductForm.touched.productDescription
+              && addProductForm.errors.productDescription
+            }
           />
           <TextField
             margin='normal'
@@ -126,8 +138,14 @@ const AddProduct = () => {
             onSubmit={addProductForm.handleSubmit}
             value={addProductForm.values.productPictureURL}
             onChange={addProductForm.handleChange}
-            error={addProductForm.touched.productPictureURL && Boolean(addProductForm.errors.productPictureURL)}
-            helperText={addProductForm.touched.productPictureURL && addProductForm.errors.productPictureURL}
+            error={
+              addProductForm.touched.productPictureURL
+              && Boolean(addProductForm.errors.productPictureURL)
+            }
+            helperText={
+              addProductForm.touched.productPictureURL
+              && addProductForm.errors.productPictureURL
+            }
           />
           <TextField
             margin='normal'
@@ -138,8 +156,14 @@ const AddProduct = () => {
             onSubmit={addProductForm.handleSubmit}
             value={addProductForm.values.productPrice}
             onChange={addProductForm.handleChange}
-            error={addProductForm.touched.productPrice && Boolean(addProductForm.errors.productPrice)}
-            helperText={addProductForm.touched.productPrice && addProductForm.errors.productPrice}
+            error={
+              addProductForm.touched.productPrice
+              && Boolean(addProductForm.errors.productPrice)
+            }
+            helperText={
+              addProductForm.touched.productPrice
+              && addProductForm.errors.productPrice
+            }
           />
           <TextField
             margin='normal'
@@ -150,24 +174,29 @@ const AddProduct = () => {
             onSubmit={addProductForm.handleSubmit}
             value={addProductForm.values.productStock}
             onChange={addProductForm.handleChange}
-            error={addProductForm.touched.productStock && Boolean(addProductForm.errors.productStock)}
-            helperText={addProductForm.touched.productStock && addProductForm.errors.productStock}
+            error={
+              addProductForm.touched.productStock
+              && Boolean(addProductForm.errors.productStock)
+            }
+            helperText={
+              addProductForm.touched.productStock
+              && addProductForm.errors.productStock
+            }
           />
-
           <Button
             color='primary'
             variant='contained'
             fullWidth
             type='submit'
             sx={{
-              marginTop: 2
+              marginTop: 2,
             }}
           >
             Add product
           </Button>
         </Box>
       </Box>
-    </Container >
+    </Container>
   )
 }
 

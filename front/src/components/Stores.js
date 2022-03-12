@@ -1,11 +1,9 @@
 import React from 'react'
 
-const Stores = () => {
-  return (
-    <div>
-      stores
-    </div>
-  )
-}
+const Stores = () => (
+  <div>
+    stores
+  </div>
+)
 
 export default Stores

@@ -1,15 +1,14 @@
-import { ADD_PRODUCT } from '../graphql/queries'
 import { useMutation } from '@apollo/client'
+import { ADD_PRODUCT } from '../graphql/queries'
 
 const useAddProduct = () => {
   const [mutate] = useMutation(ADD_PRODUCT)
 
   const addProduct = async (values) => {
-
     const tempPrice = parseFloat(values.productPrice)
     const productPrice = tempPrice.toFixed(2)
 
-    const productStock = parseInt(values.productStock)
+    const productStock = parseInt(values.productStock, 10)
 
     // mutation returns a boolean
     // about the success of the operation

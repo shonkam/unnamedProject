@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "cross-env NODE_ENV=test jest"
+    "test": "cross-env NODE_ENV=test jest",
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix ."
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +28,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.16.5",
     "cross-env": "^7.0.3",
+    "eslint": "^8.11.0",
     "jest": "^27.4.3",
     "nodemon": "^2.0.15"
   }

@@ -130,7 +130,7 @@ export const resolvers = {
         console.log(store)
         await Store.findByIdAndDelete(store.id)
 
-        return { message: `Store was successfully deleted` }
+        return { message: 'Store was successfully deleted' }
       } catch (error) {
         console.log('an error occurred while deleting store', error)
       }

@@ -51,7 +51,6 @@ const UpdateProductForm = ({ customizedProduct }) => {
         productDescription: values.productDescription,
       }
       const response = await updateProduct(updatedProduct)
-      // const response = await addProduct(values)
       // todo noti
       console.log(response)
       if (response) {
@@ -99,7 +98,7 @@ const UpdateProductForm = ({ customizedProduct }) => {
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: 15,
+        marginTop: 3,
         alignItems: 'center',
       }}
       >

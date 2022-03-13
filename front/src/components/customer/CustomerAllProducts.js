@@ -53,7 +53,6 @@ const CustomerAllProducts = () => {
           key={product.id}
           sx={{
             display: 'flex',
-            flexDirection: 'row',
             marginTop: 3,
             marginBottom: 3,
             borderRadius: 1,

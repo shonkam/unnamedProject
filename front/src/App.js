@@ -14,6 +14,8 @@ import StoreLogin from './components/store/StoreLogin'
 import { setUserType } from './redux/reducers/userReducer'
 import CustomerRouting from './routing/CustomerRouting'
 import StoreRouting from './routing/StoreRouting'
+import CustomerAllProducts from './components/customer/CustomerAllProducts'
+import ShoppingCart from './components/customer/ShoppingCart'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -47,6 +49,8 @@ const App = () => {
         <Routes>
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />
+          <Route path='/cart' element={<ShoppingCart />} />
+          <Route path='store/:storeID' element={<CustomerAllProducts />} />
           <Route exact path='/' element={<Stores />} />
           <Route exact path='/storelogin' element={<StoreLogin />} />
           <Route

@@ -15,7 +15,7 @@ const StoreProfile = () => {
 
   if (!ownStore) {
     return (
-      <Container maxWidth='lg'>
+      <Container maxWidth='md'>
         <Box sx={{
           display: 'flex',
           flexDirection: 'column',
@@ -35,21 +35,14 @@ const StoreProfile = () => {
   }
 
   return (
-    <Container maxWidth='lg'>
+    <Container maxWidth='md'>
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: 2,
+        marginTop: 5,
       }}
       >
-        <Typography
-          component='h1'
-          variant='h5'
-          alignSelf='center'
-        >
-          Your profile
-        </Typography>
-        <Card sx={{ paddingTop: 2 }}>
+        <Card>
           <CardMedia
             component='img'
             image={`${ownStore.backgroundPictureURL}`}
@@ -62,11 +55,6 @@ const StoreProfile = () => {
             </Typography>
             <Typography variant='h6' component='div'>
               {ownStore.description}
-            </Typography>
-            <Typography variant='h6' component='div'>
-              {ownStore.location.city}
-              ,
-              {ownStore.location.country}
             </Typography>
           </CardContent>
         </Card>

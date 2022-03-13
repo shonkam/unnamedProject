@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import useGetSingleProduct from '../../hooks/useGetSingleProduct'
 import UpdateProductForm from './UpdateProductForm'
+import LoadingScreen from '../LoadingScreen'
 
 const CustomizeProduct = () => {
   const { id } = useParams()
@@ -9,9 +10,10 @@ const CustomizeProduct = () => {
 
   if (!customizedProduct) {
     return (
-      <div>loading...</div>
+      <LoadingScreen />
     )
   }
+
   return (
     <UpdateProductForm customizedProduct={customizedProduct} />
   )

@@ -2,7 +2,7 @@
 const shoppingCartReducer = (state = [], action) => {
   switch (action.type) {
     case 'EMPTY_CART':
-      return state === []
+      return action.data
     case 'ADD_PRODUCT':
       return [...state, action.data]
     default:
@@ -17,6 +17,7 @@ export const addProductToCart = (product) => ({
 
 export const emptyCart = () => ({
   type: 'EMPTY_CART',
+  data: [],
 })
 
 export default shoppingCartReducer

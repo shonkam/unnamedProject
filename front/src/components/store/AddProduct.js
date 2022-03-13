@@ -71,7 +71,7 @@ const AddProduct = () => {
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: 15,
+        marginTop: 3,
         alignItems: 'center',
       }}
       >

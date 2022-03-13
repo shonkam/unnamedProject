@@ -42,20 +42,13 @@ const Products = () => {
   }
 
   return (
-    <Container maxWidth='lg'>
+    <Container maxWidth='md'>
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: 2,
+        marginTop: 3,
       }}
       >
-        <Typography
-          component='h1'
-          variant='h5'
-          alignSelf='center'
-        >
-          Your products
-        </Typography>
         <ImageList
           variant='quilted'
           cols={2}

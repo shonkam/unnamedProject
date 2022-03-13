@@ -7,7 +7,7 @@ import {
 } from '@mui/material'
 import CustomerLinkHeader from '../components/customer/CustomerLinkHeader'
 import Logout from '../components/Logout'
-import Stores from '../components/customer/Stores'
+import Stores from '../components/Stores'
 import Orders from '../components/customer/Orders'
 import CustomerAllProducts from '../components/customer/CustomerAllProducts'
 import ShoppingCart from '../components/customer/ShoppingCart'

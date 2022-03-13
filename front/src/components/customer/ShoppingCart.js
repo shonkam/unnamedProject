@@ -20,6 +20,7 @@ const ShoppingCart = () => {
   const [createOrder] = useCreateOrder()
   const productsInCart = useSelector((state) => state.shoppingCart)
   const currentStoreID = useSelector((state) => state.currentStore)
+  const currentUser = useSelector((state) => state.user)
   let totalSum = 0
 
   if (productsInCart) {
@@ -39,6 +40,9 @@ const ShoppingCart = () => {
       if (productsInCart.length === 0) {
         // eslint-disable-next-line no-alert
         (window.alert('No items in cart'))
+      } else if (!currentUser) {
+        // eslint-disable-next-line no-alert
+        (window.alert('Please login or sign up in order to make order'))
       } else {
         await createOrder(productsInCart, totalSum, currentStoreID)
         dispatch(emptyCart())

@@ -74,7 +74,7 @@ const StoreLogin = () => {
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: 15,
+        marginTop: 3,
       }}
       >
         <Typography
@@ -128,8 +128,15 @@ const StoreLogin = () => {
             variant='contained'
             fullWidth
             type='submit'
+            sx={{
+              marginTop: 1,
+              backgroundColor: '#b2afaf',
+              ':hover': {
+                bgcolor: '#7f7d7d',
+              },
+            }}
           >
-            Submit
+            Login
           </Button>
         </Box>
       </Box>

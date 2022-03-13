@@ -22,7 +22,7 @@ const StoreOrders = () => {
 
   return (
     <Container maxWidth='md'>
-      <Box>
+      <Box sx={{ marginTop: 3 }}>
         <Table>
           <TableHead>
             <TableRow>

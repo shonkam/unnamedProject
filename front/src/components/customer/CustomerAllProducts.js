@@ -53,7 +53,6 @@ const CustomerAllProducts = () => {
           key={product.id}
           sx={{
             display: 'flex',
-            flexDirection: 'row',
             marginTop: 3,
             marginBottom: 3,
             borderRadius: 1,
@@ -97,6 +96,7 @@ const CustomerAllProducts = () => {
               )}
             <Typography variant='h5' component='div' sx={{ marginTop: 1 }}>
               {product.productPrice}
+              {' '}
               €
             </Typography>
 

@@ -71,7 +71,7 @@ const AddProduct = () => {
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: 15,
+        marginTop: 3,
         alignItems: 'center',
       }}
       >
@@ -190,6 +190,10 @@ const AddProduct = () => {
             type='submit'
             sx={{
               marginTop: 2,
+              backgroundColor: '#b2afaf',
+              ':hover': {
+                bgcolor: '#7f7d7d',
+              },
             }}
           >
             Add product

@@ -1,42 +1,68 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import LogoutIcon from '@mui/icons-material/Logout'
+import PersonIcon from '@mui/icons-material/Person'
+import StorefrontIcon from '@mui/icons-material/Storefront'
+import Add from '@mui/icons-material/Add'
 import {
   AppBar,
   Button,
   Container,
   Box,
+  Typography,
 } from '@mui/material'
 
+const styles = {
+  link: {
+    color: 'white',
+    textDecoration: 'none',
+  },
+}
+
 const StoreLinkHeader = () => (
-  <AppBar position='static'>
-    <Container maxWidth='xl'>
+  <Container maxWidth='md'>
+    <Box>
+      <Typography
+        variant='h2'
+        sx={{
+          display: 'flex',
+          marginBottom: 1,
+          justifyContent: 'center',
+          fontFamily: 'Roboto',
+        }}
+      >
+        Small Shops
+      </Typography>
+    </Box>
+    <AppBar position='static'>
       <Box sx={{
         display: 'flex',
-        backgroundColor: 'primary.main',
+        backgroundColor: '#b2afaf',
+        justifyContent: 'space-evenly',
       }}
       >
-        <Button variant='outlined'>
-          <Link to='/' style={{ color: 'white' }}>Profile</Link>
+        <Button style={styles.link} startIcon={<PersonIcon />}>
+          <Link to='/' style={styles.link}>Profile</Link>
         </Button>
 
-        <Button variant='outlined'>
-          <Link to='/products' style={{ color: 'white' }}>Products</Link>
+        <Button style={styles.link} startIcon={<StorefrontIcon />}>
+          <Link to='/products' style={styles.link}>Products</Link>
         </Button>
 
-        <Button variant='outlined'>
-          <Link to='/addproduct' style={{ color: 'white' }}>Add product</Link>
+        <Button style={styles.link} startIcon={<Add />}>
+          <Link to='/addproduct' style={styles.link}>Add product</Link>
         </Button>
 
-        <Button variant='outlined'>
-          <Link to='/orders' style={{ color: 'white' }}>Orders</Link>
+        <Button style={styles.link}>
+          <Link to='/orders' style={styles.link}>Orders</Link>
         </Button>
 
-        <Button variant='outlined'>
-          <Link to='/logout' style={{ color: 'white' }}>Logout</Link>
+        <Button startIcon={<LogoutIcon />} style={styles.link}>
+          <Link to='/logout' style={styles.link}>Logout</Link>
         </Button>
       </Box>
-    </Container>
-  </AppBar>
+    </AppBar>
+  </Container>
 )
 
 export default StoreLinkHeader

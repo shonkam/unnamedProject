@@ -66,15 +66,18 @@ Refetch queries | 07.02.2022 | 2 | 65 |
 Store profile view | 21.02.2022 | 3 | 68 |
 |View for all stores
 Ability to check the products of the selected store | 24.02.2022 | 3 | 71 |
-|Designing the UI, initial implementation of the single product view|5.3.2022|3|74|
-|Implementing and designing customer UI | 7.3.2022 | 4 | 78 |
-|Shopping cart view|8.3.2022|3|81|
-|Reducer and the logic to check that all the items are ordered from the same store |9.3.2022|1|82|
-|Func to create new order, minor improvements|9.3.2022|1|83|
-|Create order from frontend|10.3.2022|2|85|
-|Orders view|11.3.2022|1|86|
-|Improvements on Orders view and disabling product purchasing if the product is out of stock|11.3.2022|2|88|
-|ESLint configuration and part of corrections|11.3.2022|1|87|
-|ESLint configuration and corrections on frontend |12.3.2022|3|90|
-|Backend ESLing configuration and corrections, store validation for product updating|13.3.2022|1|91|
-|Store's orders view|13.3.2022|||
+|Designing the UI, initial implementation of the single product view|05.03.2022|3|74|
+|Implementing and designing customer UI | 07.03.2022 | 4 | 78 |
+|Shopping cart view|08.03.2022|3|81|
+|Reducer and the logic to check that all the items are ordered from the same store |09.03.2022|1|82|
+|Func to create new order, minor improvements|09.03.2022|1|83|
+|Create order from frontend|10.03.2022|2|85|
+|Orders view|11.03.2022|1|86|
+|Improvements on Orders view and disabling product purchasing if the product is out of stock|11.03.2022|2|88|
+|ESLint configuration and part of corrections|11.03.2022|1|87|
+|ESLint configuration and corrections on frontend |12.03.2022|3|90|
+|Backend ESLing configuration and corrections
+Store validation for product updating|13.03.2022|1|91|
+|Store's orders view
+Structure and functionalities for guest users
+Connected styling across the app | 13.03.2022| 3 | 94 |

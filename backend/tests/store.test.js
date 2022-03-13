@@ -67,7 +67,7 @@ describe('tests for users ', () => {
     const response = await testServer.executeOperation({
       query: ALL_STORES,
       variables: {
-        "name": "constantTestStore"
+        'name': 'constantTestStore'
       }
     })
 
@@ -78,8 +78,8 @@ describe('tests for users ', () => {
     const response = await testServer.executeOperation({
       query: LOGIN_STORE,
       variables: {
-        "email": "testStore@gmail.com",
-        "password": "testStorePassword"
+        'email': 'testStore@gmail.com',
+        'password': 'testStorePassword'
       }
     })
 
@@ -90,12 +90,12 @@ describe('tests for users ', () => {
     const response = await testServer.executeOperation({
       query: LOGIN_STORE,
       variables: {
-        "email": "testStore@gmail.com",
-        "password": "wrongPassword"
+        'email': 'testStore@gmail.com',
+        'password': 'wrongPassword'
       }
     })
 
-    expect(response.errors[0].message).toBe("Check credentials")
+    expect(response.errors[0].message).toBe('Check credentials')
   })
 
   it('fails to delete store without token', async () => {

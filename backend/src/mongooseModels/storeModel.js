@@ -41,7 +41,7 @@ const storeSchema = new mongoose.Schema({
 
   products: {
     type: mongoose.Schema.Types.ObjectId,
-    type: ['Product']
+    content: ['Product']
   }
 
 })

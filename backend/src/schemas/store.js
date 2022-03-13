@@ -121,7 +121,6 @@ export const resolvers = {
 
     deleteStore: async (root, args, context) => {
       if (!context.currentStore) {
-
         throw new AuthenticationError('not authorized')
       }
       try {
@@ -130,7 +129,7 @@ export const resolvers = {
         console.log(store)
         await Store.findByIdAndDelete(store.id)
 
-        return { message: `Store was successfully deleted` }
+        return { message: 'Store was successfully deleted' }
       } catch (error) {
         console.log('an error occurred while deleting store', error)
       }

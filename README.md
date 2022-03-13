@@ -76,3 +76,4 @@ Ability to check the products of the selected store | 24.02.2022 | 3 | 71 |
 |Improvements on Orders view and disabling product purchasing if the product is out of stock|11.3.2022|2|88|
 |ESLint configuration and part of corrections|11.3.2022|1|87|
 |ESLint configuration and corrections on frontend |12.3.2022|3|90|
+|Backend ESLing configuration and corrections, store validation for product updating|13.3.2022|1|91|

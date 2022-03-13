@@ -1,5 +1,5 @@
 import { gql } from 'apollo-server'
-import { UserInputError, AuthenticationError } from 'apollo-server'
+import { AuthenticationError } from 'apollo-server'
 import Store from '../mongooseModels/storeModel.js'
 import Product from '../mongooseModels/productModel.js'
 
@@ -69,7 +69,7 @@ export const resolvers = {
         console.log('an error occurred while fetching products: ', error)
       }
     },
-    singleProduct: async (root, args, context) => {
+    singleProduct: async (root, args) => {
       try {
         return await Product.findOne({ _id: args.productID })
       } catch (error) {
@@ -109,7 +109,20 @@ export const resolvers = {
     },
     updateProduct: async (root, args, context) => {
       try {
-        // todo validate store
+        if (!context.currentStore) {
+          throw new AuthenticationError('not authorized')
+        }
+
+        const updatedProduct = await Product.findOne({
+          _id: args.productID
+        })
+        const storeID = context.currentStore._id.toString()
+        const productID = updatedProduct.productStore.toString()
+
+        if (storeID !== productID) {
+          throw new AuthenticationError('not authorized')
+        }
+
         await Product.findOneAndUpdate(
           { '_id': args.productID },
           {

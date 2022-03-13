@@ -15,8 +15,8 @@ describe('tests for customers ', () => {
     const response = await testServer.executeOperation({
       query: ADD_CUSTOMER,
       variables: {
-        "email": "test@gmail.com",
-        "password": "password"
+        'email': 'test@gmail.com',
+        'password': 'password'
       }
     })
 
@@ -27,8 +27,8 @@ describe('tests for customers ', () => {
     const response = await testServer.executeOperation({
       query: ADD_CUSTOMER,
       variables: {
-        "email": "test@gmail.com",
-        "password": "password"
+        'email': 'test@gmail.com',
+        'password': 'password'
       }
     })
 
@@ -39,7 +39,7 @@ describe('tests for customers ', () => {
     const response = await testServer.executeOperation({
       query: ALL_CUSTOMERS,
       variables: {
-        "email": "test@gmail.com"
+        'email': 'test@gmail.com'
       }
     })
 
@@ -50,8 +50,8 @@ describe('tests for customers ', () => {
     const response = await testServer.executeOperation({
       query: ADD_CUSTOMER,
       variables: {
-        "email": "anotherTest@gmail.com",
-        "password": "password"
+        'email': 'anotherTest@gmail.com',
+        'password': 'password'
       }
     })
 
@@ -71,8 +71,8 @@ describe('tests for customers ', () => {
     const response = await testServer.executeOperation({
       query: LOGIN_CUSTOMER,
       variables: {
-        "email": "test@gmail.com",
-        "password": "password"
+        'email': 'test@gmail.com',
+        'password': 'password'
       }
     })
 
@@ -83,19 +83,19 @@ describe('tests for customers ', () => {
     const response = await testServer.executeOperation({
       query: LOGIN_CUSTOMER,
       variables: {
-        "email": "test@gmail.com",
-        "password": "wrongPassword"
+        'email': 'test@gmail.com',
+        'password': 'wrongPassword'
       }
     })
 
-    expect(response.errors[0].message).toBe("Check credentials")
+    expect(response.errors[0].message).toBe('Check credentials')
   })
 
   it('deletes a customer', async () => {
     const response = await testServer.executeOperation({
       query: DELETE_CUSTOMER,
       variables: {
-        "email": "test@gmail.com"
+        'email': 'test@gmail.com'
       }
     })
 
@@ -106,7 +106,7 @@ describe('tests for customers ', () => {
     const response = await testServer.executeOperation({
       query: DELETE_CUSTOMER,
       variables: {
-        "email": "anotherTest@gmail.com"
+        'email': 'anotherTest@gmail.com'
       }
     })
 

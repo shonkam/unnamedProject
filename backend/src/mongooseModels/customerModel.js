@@ -11,14 +11,12 @@ const customerSchema = new mongoose.Schema({
     lowercase: true,
     trim: true
   },
-
   // password will be hashed 
   // during the mutation
   password: {
     type: String,
     required: true
   },
-
   orders: {
     type: ['Order']
   }

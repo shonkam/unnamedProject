@@ -96,6 +96,7 @@ const CustomerAllProducts = () => {
               )}
             <Typography variant='h5' component='div' sx={{ marginTop: 1 }}>
               {product.productPrice}
+              {' '}
               €
             </Typography>
 

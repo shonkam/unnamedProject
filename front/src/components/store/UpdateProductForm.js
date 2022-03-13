@@ -217,6 +217,10 @@ const UpdateProductForm = ({ customizedProduct }) => {
             type='submit'
             sx={{
               marginTop: 2,
+              backgroundColor: '#b2afaf',
+              ':hover': {
+                bgcolor: '#7f7d7d',
+              },
             }}
           >
             Update product

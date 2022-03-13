@@ -98,7 +98,7 @@ const SignUp = () => {
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: 15,
+        marginTop: 3,
         paddingBottom: 5,
       }}
       >
@@ -336,6 +336,10 @@ const SignUp = () => {
             type='submit'
             sx={{
               marginTop: 2,
+              backgroundColor: '#b2afaf',
+              ':hover': {
+                bgcolor: '#7f7d7d',
+              },
             }}
           >
             Register

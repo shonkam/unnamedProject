@@ -109,7 +109,20 @@ export const resolvers = {
     },
     updateProduct: async (root, args, context) => {
       try {
-        // todo validate store
+        if (!context.currentStore) {
+          throw new AuthenticationError('not authorized')
+        }
+
+        const updatedProduct = await Product.findOne({
+          _id: args.productID
+        })
+        const storeID = context.currentStore._id.toString()
+        const productID = updatedProduct.productStore.toString()
+
+        if (storeID !== productID) {
+          throw new AuthenticationError('not authorized')
+        }
+
         await Product.findOneAndUpdate(
           { '_id': args.productID },
           {

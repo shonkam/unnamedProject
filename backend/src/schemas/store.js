@@ -121,7 +121,6 @@ export const resolvers = {
 
     deleteStore: async (root, args, context) => {
       if (!context.currentStore) {
-
         throw new AuthenticationError('not authorized')
       }
       try {

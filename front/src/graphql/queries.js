@@ -11,6 +11,9 @@ export const GET_ORDERS = gql`
         productName
         productPrice
       }
+      customer {
+        email
+      }
       date
       orderSum
     }
@@ -23,7 +26,6 @@ export const CREATE_ORDER = gql`
       successful
     }
   }
-  
 `
 
 export const ADD_CUSTOMER = gql`

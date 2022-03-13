@@ -35,7 +35,10 @@ export const resolvers = {
     allOrders: async (root, args, context) => {
       if (context.currentCustomer) {
         return await Order.find({ customer: context.currentCustomer._id }).populate(['customer', 'store', 'products'])
-      } else {
+      } else if (context.currentStore) {
+        return await Order.find({ store: context.currentStore._id }).populate(['customer', 'store', 'products'])
+      }
+      else {
         return await Order.find({}).populate(['customer', 'store', 'products'])
       }
     },

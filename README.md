@@ -1,8 +1,18 @@
-# unnamedProject
+# Full Stack -web development project (5 credits)
 
-## Work in Progress
+## About the project
 
-###  [Full Stack -web development project](https://github.com/FullStack-HY/misc/blob/main/project.md)
+### This repository was used for development phase.
+
+### Client repository is [here](https://github.com/shonkam/small-shops-client) and it's running [here](https://small-shops-client.herokuapp.com/) Use instructions are on repo's [README](https://github.com/shonkam/small-shops-client/blob/main/README.md)
+
+### API repository is [here](https://github.com/shonkam/small-shops-api) and it's running [here](https://small-shops-api.herokuapp.com/)
+
+### The changes on these repositories at the time of writing are only regarding Heroku deployment along with few minor fixes.
+
+---
+
+## Time keeping
 
 | Task | Commit Date | Hours | Hours total |
 |-----|-----|-----|-----|
@@ -81,3 +91,8 @@ Store validation for product updating|13.03.2022|1|91|
 |Store's orders view
 Structure and functionalities for guest users
 Connected styling across the app | 13.03.2022| 3 | 94 |
+|Deploying to Heroku
+Small fixes|14.03.2022|8|102|
+
+---
+###  [Project instructions](https://github.com/FullStack-HY/misc/blob/main/project.md)

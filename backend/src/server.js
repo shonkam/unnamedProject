@@ -1,6 +1,5 @@
 import dotenv from 'dotenv'
 import { ApolloServer } from 'apollo-server'
-//import cors from 'cors'
 import jwt from 'jsonwebtoken'
 import { schema } from './schemas/schema.js'
 import Store from './mongooseModels/storeModel.js'
@@ -11,7 +10,6 @@ const JWT_SECRET = process.env.JWT_SECRET
 
 export const server = new ApolloServer({
   schema: schema,
-  cors: true,
   context: async ({ req }) => {
     try {
       const authorization = req ? req.headers.authorization : null
